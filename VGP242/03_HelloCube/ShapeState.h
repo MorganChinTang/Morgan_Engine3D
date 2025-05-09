@@ -13,9 +13,9 @@ public:
 protected:
     virtual void CreateShape();
 
-    using Vertices = std::vector<Engine3D::Graphics::VertexPC>;
-    Vertices mVertices;
-
+    Engine3D::Graphics::MeshPC mMesh;
+    Engine3D::Graphics::Camera mCamera;
+    Engine3D::Graphics::ConstantBuffer mTransformBuffer;
     Engine3D::Graphics::MeshBuffer mMeshBuffer;
     Engine3D::Graphics::VertexShader mVertexShader;
     Engine3D::Graphics::PixelShader mPixelShader;
