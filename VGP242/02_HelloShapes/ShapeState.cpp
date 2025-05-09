@@ -111,6 +111,14 @@ void ShapeState::Update(float deltaTime)
     {
         Engine3D::MainApp().ChangeState("TriangleShapeState");
     }
+    if (Input::InputSystem::Get()->IsKeyPressed(Input::KeyCode::DOWN))
+    {
+        Engine3D::MainApp().ChangeState("ShapeState");
+    }
+    if (Input::InputSystem::Get()->IsKeyPressed(Input::KeyCode::LEFT))
+    {
+        Engine3D::MainApp().ChangeState("TreeShapeState");
+    }
 }
 
 void ShapeState::Render()
@@ -147,6 +155,14 @@ void TriangleShapeState::Update(float deltaTime)
     {
         Engine3D::MainApp().ChangeState("ShapeState");
     }
+    if (Input::InputSystem::Get()->IsKeyPressed(Input::KeyCode::UP))
+    {
+        Engine3D::MainApp().ChangeState("TriangleShapeState");
+    }
+    if (Input::InputSystem::Get()->IsKeyPressed(Input::KeyCode::LEFT))
+    {
+        Engine3D::MainApp().ChangeState("TreeShapeState");
+    }
 }
 
 void TriangleShapeState::CreateShape()
@@ -170,20 +186,28 @@ void TreeShapeState::Update(float deltaTime)
     {
         Engine3D::MainApp().ChangeState("TreeShapeState");
     }
+    if (Input::InputSystem::Get()->IsKeyPressed(Input::KeyCode::DOWN))
+    {
+        Engine3D::MainApp().ChangeState("ShapeState");
+    }
+    if (Input::InputSystem::Get()->IsKeyPressed(Input::KeyCode::UP))
+    {
+        Engine3D::MainApp().ChangeState("TriangleShapeState");
+    }
 }
 
 void TreeShapeState::CreateShape()
 {
     
     mVertices.push_back({ { -0.5f, -0.75f, 0.0f }, Colors::Red });
-    mVertices.push_back({ { 0.5f, -0.75f, 0.0f }, Colors::Green });
     mVertices.push_back({ { 0.0f, -0.25f, 0.0f }, Colors::Blue });
+    mVertices.push_back({ { 0.5f, -0.75f, 0.0f }, Colors::Green });
 
     mVertices.push_back({ { -0.4f, -0.5f, 0.0f }, Colors::Red });
-    mVertices.push_back({ { 0.4f, -0.5f, 0.0f }, Colors::Green });
     mVertices.push_back({ { 0.0f, 0.0f, 0.0f }, Colors::Blue });
+    mVertices.push_back({ { 0.4f, -0.5f, 0.0f }, Colors::Green });
 
     mVertices.push_back({ { -0.3f, -0.25f, 0.0f }, Colors::Red });
-    mVertices.push_back({ { 0.3f, -0.25f, 0.0f }, Colors::Green });
     mVertices.push_back({ { 0.0f, 0.25f, 0.0f }, Colors::Blue });
+    mVertices.push_back({ { 0.3f, -0.25f, 0.0f }, Colors::Green });
 }
