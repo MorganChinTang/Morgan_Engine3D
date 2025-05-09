@@ -42,3 +42,11 @@ public:
 protected:
     void CreateShape() override;
 };
+
+class DiamondShapeState : public ShapeState
+{
+public:
+    void Update(float deltaTime) override;
+protected:
+    void CreateShape() override;
+};
