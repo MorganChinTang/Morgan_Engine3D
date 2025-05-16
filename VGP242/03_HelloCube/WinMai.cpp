@@ -5,7 +5,7 @@ int WINAPI WinMain(HINSTANCE instance, HINSTANCE, LPSTR, int)
 {
 
 	Engine3D::AppConfig config;
-	config.appName = L"Hello Cube";
+	config.appName = L"Hello Mesh Builder";
 
 	Engine3D::App& myApp = Engine3D::MainApp();
 	myApp.AddState<ShapeState>("ShapeState");
