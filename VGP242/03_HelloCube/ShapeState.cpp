@@ -42,13 +42,13 @@ void ShapeState::Update(float deltaTime)
     {
         mCamera.Walk(-moveSpeed * deltaTime);
     }
-    if (input->IsKeyDown(KeyCode::A))
-    {
-        mCamera.Strafe(-moveSpeed * deltaTime);
-    }
     if (input->IsKeyDown(KeyCode::D))
     {
         mCamera.Strafe(moveSpeed * deltaTime);
+    }
+    if (input->IsKeyDown(KeyCode::A))
+    {
+        mCamera.Strafe(-moveSpeed * deltaTime);
     }
     if (input->IsKeyDown(KeyCode::Q))
     {
@@ -63,6 +63,22 @@ void ShapeState::Update(float deltaTime)
     {
         mCamera.Yaw(input->GetMouseMoveX() * turnSpeed * deltaTime);
         mCamera.Pitch(input->GetMouseMoveY() * turnSpeed * deltaTime);
+    }
+
+    if (input->IsKeyPressed(KeyCode::NUMPAD1))
+    {
+        mMesh = MeshBuilder::CreateCubePC(1.0f);
+        mMeshBuffer.Initialize(mMesh);
+    }
+    if (input->IsKeyPressed(KeyCode::NUMPAD2))
+    {
+        mMesh = MeshBuilder::CreatePyramidPC(1.0f);
+        mMeshBuffer.Initialize(mMesh);
+    }
+    if (input->IsKeyPressed(KeyCode::NUMPAD3))
+    {
+        mMesh = MeshBuilder::CreateRectanglePC(0.2f, 0.5f, 1.0f);
+        mMeshBuffer.Initialize(mMesh);
     }
 }
 
@@ -89,4 +105,6 @@ void ShapeState::Render()
 void ShapeState::CreateShape()
 {
     mMesh = MeshBuilder::CreateCubePC(1.0f);
+    mMesh = MeshBuilder::CreatePyramidPC(1.0f);
+    mMesh = MeshBuilder::CreateRectanglePC(0.2f, 0.5f, 1.0f);
 }

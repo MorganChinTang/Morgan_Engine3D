@@ -11,11 +11,11 @@ namespace Engine3D::Graphics
         static MeshPC CreateCubePC(float size, const Color& color);
         static MeshPC CreateCubePC(float size);
 
-        //hw
+        //hw:Create the shapes and make if keyPressed switch between the shapes
         //pyramid
-        static MeshPC CreatePyramd(float size);
+        static MeshPC CreatePyramidPC(float size);
 
         //rectangle
-        static MeshPC CreateRectangle(float width, float height, float depth);
+        static MeshPC CreateRectanglePC(float width, float height, float depth);
     };
 }
