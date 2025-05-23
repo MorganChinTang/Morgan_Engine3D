@@ -71,21 +71,26 @@ void ShapeState::Update(float deltaTime)
         mCamera.Pitch(input->GetMouseMoveY() * turnSpeed * deltaTime);
     }
 
-    //if (input->IsKeyPressed(KeyCode::NUMPAD1))
-    //{
-    //    mMesh = MeshBuilder::CreateCubePC(1.0f);
-    //    mMeshBuffer.Initialize(mMesh);
-    //}
-    //if (input->IsKeyPressed(KeyCode::NUMPAD2))
-    //{
-    //    mMesh = MeshBuilder::CreatePyramidPC(1.0f);
-    //    mMeshBuffer.Initialize(mMesh);
-    //}
-    //if (input->IsKeyPressed(KeyCode::NUMPAD3))
-    //{
-    //    mMesh = MeshBuilder::CreateRectanglePC(0.2f, 0.5f, 1.0f);
-    //    mMeshBuffer.Initialize(mMesh);
-    //}
+    if (input->IsKeyPressed(KeyCode::NUMPAD1))
+    {
+        mMesh = MeshBuilder::CreateSpherePX(10, 10, 1.0f);
+        mMeshBuffer.Initialize(mMesh);
+    }
+    if (input->IsKeyPressed(KeyCode::NUMPAD2))
+    {
+        mMesh = MeshBuilder::CreatePlanePX(3, 3, 1.0f, true);
+        mMeshBuffer.Initialize(mMesh);
+    }
+    if (input->IsKeyPressed(KeyCode::NUMPAD3))
+    {
+        mMesh = MeshBuilder::CreatePlanePX(3, 3, 1.0f, false);
+        mMeshBuffer.Initialize(mMesh);
+    }
+    if (input->IsKeyPressed(KeyCode::NUMPAD4))
+    {
+        mMesh = MeshBuilder::CreateSkySpherePX(10, 10, 200.0f);
+        mMeshBuffer.Initialize(mMesh);
+    }
 }
 
 void ShapeState::Render()
@@ -124,5 +129,6 @@ void ShapeState::CreateShape()
     //Hello MeshBuilder
     //mMesh = MeshBuilder::CreateSpherePX(10, 10, 1.0f);
     //mMesh = MeshBuilder::CreatePlanePX(10, 10, 1.0f, true);
+    //mMesh = MeshBuilder::CreatePlanePX(10, 10, 1.0f, false);
     mMesh = MeshBuilder::CreateSkySpherePX(10, 10, 200.0f);
 }
