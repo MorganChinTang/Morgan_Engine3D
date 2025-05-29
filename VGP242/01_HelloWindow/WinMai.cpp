@@ -1,3 +1,6 @@
+#include "GameState.h"
+#include "GameState.h"
+#include "GameState.h"
 #include <3DEngine/Inc/3DEngine.h>
 
 class MainState : public Engine3D::AppState
@@ -42,6 +45,15 @@ public:
         {
             Engine3D::MainApp().ChangeState("MainState");
         }
+    }
+    void GameState::Render()
+    {
+    }
+    void GameState::DebugUI()
+    {
+    }
+    void GameState::UpdateCamera(float deltaTime)
+    {
     }
 private:
     float mLifeTime = 0.0f;

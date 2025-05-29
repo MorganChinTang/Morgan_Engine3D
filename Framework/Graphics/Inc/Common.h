@@ -9,6 +9,10 @@
 
 #include <DirectXTK/Inc/CommonStates.h>
 
+//ImGui
+#include <ImGui/Inc/imgui.h>
+
+//
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib, "d3dcompiler.lib")
 #pragma comment(lib, "dxguid.lib")
