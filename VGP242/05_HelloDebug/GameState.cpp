@@ -122,6 +122,8 @@ void GameState::DebugUI()
         break;
     }
     }
+    ImGui::End();
+
     SimpleDraw::AddLine(gV0,gV1, Colors::LightBlue);
     SimpleDraw::AddGroundPlane(10.0f, Colors::LightGoldenrodYellow);
     SimpleDraw::Render(mCamera);
