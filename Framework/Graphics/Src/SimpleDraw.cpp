@@ -57,11 +57,11 @@ namespace
 	}
 	void SimpleDrawImpl::Terminate()
 	{
+        mBlendState.Terminate();
 		mMeshBuffer.Terminate();
 		mConstantBuffer.Terminate();
 		mPixelShader.Terminate();
 		mVertexShader.Terminate();
-        mBlendState.Terminate();
 	}
 	void SimpleDrawImpl::AddLine(const Vector3& v0, const Vector3& v1, const Color& color)
 	{

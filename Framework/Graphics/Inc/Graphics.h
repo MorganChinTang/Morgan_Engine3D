@@ -16,6 +16,7 @@
 #include "RenderTarget.h"
 #include "Sampler.h"
 #include "SimpleDraw.h"
+#include "SimpleTextureEffect.h"
 #include "Texture.h"
 #include "TextureManager.h"
 #include "VertexShader.h"

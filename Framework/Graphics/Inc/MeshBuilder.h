@@ -33,5 +33,8 @@ namespace Engine3D::Graphics
         //sky
         static MeshPX CreateSkySpherePX(int slices, int rings, int radius);
 
+        //load obj
+        static MeshPX CreateOBJPX(const std::filesystem::path& filePath, float scale);
+
     };
 }

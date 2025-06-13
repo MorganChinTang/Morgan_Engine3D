@@ -72,7 +72,7 @@ void App::Run(const AppConfig& config )
     LOG("App Quit");
     mCurrentState->Terminate();
     
-    TextureManager::StaticTerminate();
+    TextureManager::StaticTerminate();                      
     SimpleDraw::StaticTerminate();
     DebugUI::StaticTerminate();
     InputSystem::StaticTerminate();
