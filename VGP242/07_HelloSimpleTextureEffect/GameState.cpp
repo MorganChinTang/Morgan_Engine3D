@@ -1,4 +1,5 @@
 #include "GameState.h"
+#include <iostream>
 
 using namespace Engine3D;
 using namespace Engine3D::Graphics;
@@ -11,16 +12,13 @@ void GameState::Initialize()
 
     mRenderTargetCamera.SetPosition({ 0.0f, 1.0f, -5.0f });
     mRenderTargetCamera.SetLookAt({ 0.0f, 0.0f, 0.0f });
+    mRenderTargetCamera.SetAspectRatio(1.0f);
 
-    //initialize gpu communication
     mSimpleTextureEffect.Initialize();
 
-    //initialize object
     MeshPX sphere = MeshBuilder::CreateSpherePX(50, 50, 1.0f);
     mObject0.mesh.Initialize(sphere);
-    mObject1.mesh.Initialize(sphere);
-
-    mTextureId = TextureManager::Get()->LoadTexture(L"sun.jpg");
+    mObject0.textureId = TextureManager::Get()->LoadTexture(L"earth.jpg");
 
     constexpr uint32_t size = 1024;
     mRenderTarget.Initialize(size, size, RenderTarget::Format::RGBA_U32);
@@ -28,7 +26,10 @@ void GameState::Initialize()
 
 void GameState::Terminate()
 {
-
+    mRenderTarget.Terminate();
+    TextureManager::Get()->ReleaseTexture(mObject0.textureId);
+    mObject0.mesh.Terminate();
+    mSimpleTextureEffect.Terminate();
 }
 
 void GameState::Update(float deltaTime)
@@ -45,7 +46,6 @@ void GameState::Render()
     mRenderTarget.BeginRender();
     mSimpleTextureEffect.Begin();
     mSimpleTextureEffect.Render(mObject0);
-    mSimpleTextureEffect.Render(mObject1);
     mSimpleTextureEffect.End();
     mRenderTarget.EndRender();
 
@@ -53,26 +53,8 @@ void GameState::Render()
     mSimpleTextureEffect.SetCamera(mCamera);
     mSimpleTextureEffect.Begin();
     mSimpleTextureEffect.Render(mObject0);
-    mSimpleTextureEffect.Render(mObject1);
     mSimpleTextureEffect.End();
   
-}
-
-void GameState::RenderObject(const Object& object, const Camera& camera)
-{
-    const Math::Matrix4 matView = camera.GetViewMatrix();
-        const Math::Matrix4 matProj = camera.GetProjectionMatrix();
-    const Math::Matrix4 matFinal = object.worldMat * matView * matProj;
-    const Math::Matrix4 wvp = Math::Transpose(matFinal);
-    mTransformBuffer.Update(&wvp);
-
-    mVertexShader.Bind();
-    mPixelShader.Bind();
-        mSampler.BindPS(0);
-    mTransformBuffer.BindVS(0);
-
-    TextureManager::Get()->BindPS(object.textureId, 0);
-    object.meshBuffer.Render();
 }
 
 bool gCheckValue = false;
@@ -95,6 +77,8 @@ enum class Shape
     Transform
 };
 
+Shape gCurrentShape = Shape::None;
+
 const char* gShapeNames[] =
 {
     "None",
@@ -105,8 +89,6 @@ const char* gShapeNames[] =
     "GroundCircle",
     "Transform"
 };
-
-Shape gCurrentShape = Shape::None;
 
 void GameState::DebugUI()
 {
@@ -172,13 +154,6 @@ void GameState::DebugUI()
     }
     }
 
-    Math::Vector3 pos = Math::GetTranslation(mWorldMat);
-    if (ImGui::DragFloat3("ObjPosition", &pos.x, 0.1f))
-    {
-        mWorldMat._41 = pos.x;
-        mWorldMat._42 = pos.y;
-        mWorldMat._43 = pos.z;
-    }
     ImGui::Separator();
     ImGui::Text("RenderTarget");
     ImGui::Image(
@@ -191,9 +166,6 @@ void GameState::DebugUI()
     );
 
     ImGui::End();
-
-    SimpleDraw::AddGroundPlane(10.0f, Colors::LightGoldenrodYellow);
-    SimpleDraw::Render(mCamera);
 }
 
 void GameState::UpdateCamera(float deltaTime)
@@ -238,4 +210,3 @@ void GameState::UpdateCamera(float deltaTime)
     //    mMeshBuffer.Initialize(mMesh);
     //}
 }
-

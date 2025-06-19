@@ -21,9 +21,7 @@ private:
     Engine3D::Graphics::SimpleTextureEffect mSimpleTextureEffect;
 
     //object
-    Engine3D::Graphics::Camera mCamera;
-    Engine3D::Graphics::Camera mRenderTargetCamera;
-
+    Engine3D::Graphics::SimpleTextureEffect::RenderData mObject0;
     //render target
     Engine3D::Graphics::RenderTarget mRenderTarget;
 };
