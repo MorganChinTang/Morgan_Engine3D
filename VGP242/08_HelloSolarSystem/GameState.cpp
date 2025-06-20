@@ -16,7 +16,7 @@ SimpleTextureEffect mSimpleTextureEffect;
 
 void GameState::Initialize()
 {
-    mCamera.SetPosition({ 0.0f, 100.0f, 30.0f });
+    mCamera.SetPosition({ 0.0f, 10.0f, 30.0f });
     mCamera.SetLookAt({ 0.0f, 0.0f, 0.0f });
 
     mRenderTargetCamera.SetPosition({ 0.0f, 10.0f, 30.0f });
@@ -33,6 +33,10 @@ void GameState::Initialize()
     mSimpleTextureEffect.SetCamera(mCamera);
 
     MeshPX sphere = MeshBuilder::CreateSpherePX(30, 30, 1.0f);
+    // Sky Sphere Space
+    MeshPX skySphere = MeshBuilder::CreateSkySpherePX(30, 30, 500.0f);
+    mSkySphere.renderData.textureId = TextureManager::Get()->LoadTexture(L"../../Assets/Textures/space.jpg");
+    mSkySphere.renderData.mesh.Initialize(skySphere);
 
     // Sun
     mSun.renderData.textureId = TextureManager::Get()->LoadTexture(L"../../Assets/Textures/planets/sun.jpg");
@@ -138,6 +142,7 @@ void GameState::Terminate()
     TextureManager::Get()->ReleaseTexture(mNeptune.renderData.textureId);
     TextureManager::Get()->ReleaseTexture(mPluto.renderData.textureId);
     TextureManager::Get()->ReleaseTexture(mPluto.renderData.textureId);
+    TextureManager::Get()->ReleaseTexture(mSkySphere.renderData.textureId);
     
     // Terminate meshes
     mSun.renderData.mesh.Terminate();
@@ -150,13 +155,16 @@ void GameState::Terminate()
     mUranus.renderData.mesh.Terminate();
     mNeptune.renderData.mesh.Terminate();
     mPluto.renderData.mesh.Terminate();
+    mSkySphere.renderData.mesh.Terminate();
     mRenderTarget.Terminate();
 }
 
+bool gShowRings = false;
 void GameState::Update(float deltaTime)
 {
     UpdateCamera(deltaTime);
 
+    
     // Sun stays at origin
     mSun.renderData.matWorld = Math::Matrix4::Scaling(10.0f);
 
@@ -332,19 +340,8 @@ void GameState::Render()
     mSimpleTextureEffect.Render(mUranus.renderData);
     mSimpleTextureEffect.Render(mNeptune.renderData);
     mSimpleTextureEffect.Render(mPluto.renderData);
+    mSimpleTextureEffect.Render(mSkySphere.renderData);
     mSimpleTextureEffect.End();
-    
-    // Draw orbit rings for the RenderTarget view
-    SimpleDraw::AddGroundCircle(60, mMercury.distanceFromSun, Colors::Gray, Math::Vector3::Zero);
-    SimpleDraw::AddGroundCircle(60, mVenus.distanceFromSun, Colors::Gray, Math::Vector3::Zero);
-    SimpleDraw::AddGroundCircle(60, mEarth.distanceFromSun, Colors::Gray, Math::Vector3::Zero);
-    SimpleDraw::AddGroundCircle(60, mMars.distanceFromSun, Colors::Gray, Math::Vector3::Zero);
-    SimpleDraw::AddGroundCircle(60, mJupiter.distanceFromSun, Colors::Gray, Math::Vector3::Zero);
-    SimpleDraw::AddGroundCircle(60, mSaturn.distanceFromSun, Colors::Gray, Math::Vector3::Zero);
-    SimpleDraw::AddGroundCircle(60, mUranus.distanceFromSun, Colors::Gray, Math::Vector3::Zero);
-    SimpleDraw::AddGroundCircle(60, mNeptune.distanceFromSun, Colors::Gray, Math::Vector3::Zero);
-    SimpleDraw::AddGroundCircle(60, mPluto.distanceFromSun, Colors::Gray, Math::Vector3::Zero);
-    SimpleDraw::Render(mRenderTargetCamera);
     
 
     mRenderTarget.EndRender();
@@ -363,19 +360,10 @@ void GameState::Render()
     mSimpleTextureEffect.Render(mUranus.renderData);
     mSimpleTextureEffect.Render(mNeptune.renderData);
     mSimpleTextureEffect.Render(mPluto.renderData);
+    mSimpleTextureEffect.Render(mSkySphere.renderData);
     mSimpleTextureEffect.End();
     
-    // Draw orbit rings for main view
-    SimpleDraw::AddGroundCircle(60, mMercury.distanceFromSun, Colors::Gray, Math::Vector3::Zero);
-    SimpleDraw::AddGroundCircle(60, mVenus.distanceFromSun, Colors::Gray, Math::Vector3::Zero);
-    SimpleDraw::AddGroundCircle(60, mEarth.distanceFromSun, Colors::Gray, Math::Vector3::Zero);
-    SimpleDraw::AddGroundCircle(60, mMars.distanceFromSun, Colors::Gray, Math::Vector3::Zero);
-    SimpleDraw::AddGroundCircle(60, mJupiter.distanceFromSun, Colors::Gray, Math::Vector3::Zero);
-    SimpleDraw::AddGroundCircle(60, mSaturn.distanceFromSun, Colors::Gray, Math::Vector3::Zero);
-    SimpleDraw::AddGroundCircle(60, mUranus.distanceFromSun, Colors::Gray, Math::Vector3::Zero);
-    SimpleDraw::AddGroundCircle(60, mNeptune.distanceFromSun, Colors::Gray, Math::Vector3::Zero);
-    SimpleDraw::AddGroundCircle(60, mPluto.distanceFromSun, Colors::Gray, Math::Vector3::Zero);
-    SimpleDraw::Render(mCamera);
+
 }
 
 void GameState::UpdateCamera(float deltaTime)
@@ -465,6 +453,22 @@ void GameState::DebugUI()
     // Orbit and rotation speed controls (global)
     ImGui::SliderFloat("Orbit Speed Change", &orbitSpeedChange, -5.0f, 5.0f);
     ImGui::SliderFloat("Rotation Speed Change", &rotSpeedChange, -5.0f, 5.0f);
+    ImGui::Checkbox("Show Rings", &gShowRings);
+
+    if (gShowRings)
+    {
+        // Draw orbit rings for main view
+        SimpleDraw::AddGroundCircle(60, mMercury.distanceFromSun, Colors::Gray, Math::Vector3::Zero);
+        SimpleDraw::AddGroundCircle(60, mVenus.distanceFromSun, Colors::Gray, Math::Vector3::Zero);
+        SimpleDraw::AddGroundCircle(60, mEarth.distanceFromSun, Colors::Gray, Math::Vector3::Zero);
+        SimpleDraw::AddGroundCircle(60, mMars.distanceFromSun, Colors::Gray, Math::Vector3::Zero);
+        SimpleDraw::AddGroundCircle(60, mJupiter.distanceFromSun, Colors::Gray, Math::Vector3::Zero);
+        SimpleDraw::AddGroundCircle(60, mSaturn.distanceFromSun, Colors::Gray, Math::Vector3::Zero);
+        SimpleDraw::AddGroundCircle(60, mUranus.distanceFromSun, Colors::Gray, Math::Vector3::Zero);
+        SimpleDraw::AddGroundCircle(60, mNeptune.distanceFromSun, Colors::Gray, Math::Vector3::Zero);
+        SimpleDraw::AddGroundCircle(60, mPluto.distanceFromSun, Colors::Gray, Math::Vector3::Zero);
+        SimpleDraw::Render(mCamera);
+    }
     
     // Planet focus selection
     int currentPlanet = static_cast<int>(gCurrentFocus);

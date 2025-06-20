@@ -54,6 +54,7 @@ private:
     Planet mUranus;
     Planet mNeptune;
     Planet mPluto;
+    Planet mSkySphere;
 	//render target
     Engine3D::Graphics::RenderTarget mRenderTarget;
 };
