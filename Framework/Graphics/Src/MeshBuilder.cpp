@@ -239,6 +239,44 @@ MeshPX Engine3D::Graphics::MeshBuilder::CreatePlanePX(int numRows, int numColumn
     return mesh;
 }
 
+Mesh Engine3D::Graphics::MeshBuilder::CreatePlane(int numRows, int numColumns, float spacing, bool horizontal)
+{
+    Mesh mesh;
+
+    int index = rand() % 100;
+    const float hpw = static_cast<float>(numColumns) * spacing * 0.5f;
+    const float hph = static_cast<float>(numRows) * spacing * 0.5f;
+    const float uInc = 1.0f / static_cast<float>(numColumns);
+    const float vInc = -1.0f / static_cast<float>(numRows);
+
+    float w = -hpw;
+    float h = -hph;
+    float u = 0.0f;
+    float v = 1.0f;
+
+    Math::Vector3 norm = (horizontal) ? Math::Vector3::YAxis : -Math::Vector3::ZAxis;
+    Math::Vector3 tan = Math::Vector3::XAxis;
+
+    for (int r = 0; r <= numRows; r++)
+    {
+        for (int c = 0; c <= numColumns; c++)
+        {
+            Math::Vector3 pos = (horizontal) ? Math::Vector3(w, 0.0f, h) : Math::Vector3(w, h, 0.0f);
+            mesh.vertices.push_back({ pos, norm, tan, {u,v } });
+            w += spacing;
+            u += uInc;
+        }
+        w = -hpw;
+        h += spacing;
+        u = 0.0f;
+        v += vInc;
+    }
+
+    CreatePlaneIndices(mesh.indices, numRows, numColumns);
+
+    return mesh;
+}
+
 MeshPC Engine3D::Graphics::MeshBuilder::CreateCylinderPC(int slices, int rings)
 {
     MeshPC mesh;
@@ -327,6 +365,45 @@ MeshPX Engine3D::Graphics::MeshBuilder::CreateSpherePX(int slices, int rings, in
                     radius * cos(phi),
                     radius * cos(rotation) * sin(phi)},
                     { u, v }});
+        }
+    }
+
+    CreatePlaneIndices(mesh.indices, rings, slices);
+
+    return mesh;
+}
+
+Mesh Engine3D::Graphics::MeshBuilder::CreateSphere(int slices, int rings, int radius)
+{
+    Mesh mesh;
+
+    float vertRotation = Math::Constants::Pi / static_cast<float>(rings);
+    float horRotation = Math::Constants::TwoPi / static_cast<float>(slices);
+
+    float uStep = 1.0f / static_cast<float>(slices);
+    float vStep = 1.0f / static_cast<float>(rings);
+
+    for (int r = 0; r <= rings; r++)
+    {
+        float ring = static_cast<float>(r);
+        float phi = ring * vertRotation;
+        for (int s = 0; s <= slices; s++)
+        {
+            float slice = static_cast<float>(s);
+            float rotation = slice * horRotation;
+
+            float u = uStep * slice;
+            float v = vStep * ring;
+
+            Math::Vector3 pos = {
+                    radius * sin(rotation) * sin(phi),
+                    radius * cos(phi),
+                    radius * cos(rotation) * sin(phi)};
+            Math::Vector3 norm = Math::Normalize(pos);
+            Math::Vector3 tan = abs(Math::Dot(norm, Math::Vector3::YAxis)) < 0.999f ?
+                Math::Normalize({ -pos.z,0.0f, pos.x }) : Math::Vector3::XAxis;
+
+            mesh.vertices.push_back({pos, norm, tan,{ u, v } });
         }
     }
 
