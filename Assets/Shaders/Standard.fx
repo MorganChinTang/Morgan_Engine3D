@@ -15,6 +15,31 @@ cbuffer LightBuffer : register(b1)
     float3 lightDirection;
 }
 
+cbuffer MaterialBuffer : register(b2)
+{
+    float4 materialEmissive;
+    float4 materialAmbient;
+    float4 materialDiffuse;
+    float4 materialSpecular;
+    float materialShininess;
+}
+
+cbuffer SettingsBuffer : register(b3)
+{
+    bool useDiffuseMap;
+    bool useSpecMap;
+    bool useNormalMap;
+    bool useBumpMap;
+    float bumpMapWeight;
+}
+
+SamplerState textureSampler : register(s0);
+
+Texture2D diffuseMap : register(t0);
+Texture2D specMap : register(t1);
+Texture2D normalMap : register(t2);
+Texture2D bumpMap : register(t3);
+
 struct VS_INPUT
 {
     float3 position : POSITION;
@@ -35,6 +60,11 @@ struct VS_OUTPUT
 
 VS_OUTPUT VS(VS_INPUT input)
 {
+    float3 localPosition = imput.position;
+    float4 bumpMapColor = bumpMap.SampleLevel(textureSampler, input.texCoord, 0.0f);
+    float bumpHeight = (bumpMapColor.r * 2.0f) - 1.0f;
+    localPosition += (input.normal * bumpHeight * 0.5f);
+    
     VS_OUTPUT output;
     output.position = mul(float4(input.position, 1.0f), wvp);
     output.worldNormal = mul(input.normal, (float3x3) world);
@@ -54,24 +84,38 @@ float4 PS(VS_OUTPUT input) :SV_Target
     float3 light = normalize(input.dirToLight);
     float3 view = normalize(input.dirToView);
      
+    //update normal value
+    float3 t = normalize(input.worldTangent);
+    float3 b = normalize(cross(n, t));
+    float3x3 tbnw = float3x3(t, b, n);
+    float4 normalMapColor = normalMap.Sample(textureSampler, input.texCoord);
+    float3 unpackedNormalMap = normalize(float3((normalMapColor.xy * 2.0f) - 1.0f, normalMapColor.z));
+    n = normalize (mul(unpackedNormalMap, tbnw));
+    
     //emissive
-    float4 emissive = 0.0f;
+    float4 emissive = materialEmissive;
     
     //Ambient
-    float4 ambient = lightAmbient;
+    float4 ambient = lightAmbient * materialAmbient;
     
     //Diffuse
     float d = saturate(dot(light, n));
-    float4 diffuse = d * lightDiffuse;
+    float4 diffuse = d * lightDiffuse * materialDiffuse;
     
     //Specualr
     float3 r = reflect(-light, n);
     float base = saturate(dot(r, view));
-    float s = pow(base, 10.0f);
-    float4 specular = s * lightSpecular;
+    float s = pow(base, materialShininess);
+    float4 specular = s * lightSpecular * materialSpecular;
     
-    float4 finalColor = (emissive + ambient + diffuse + specular);
+    //colors
+    float4 diffuseMapColor = (useDiffuseMap) ? diffuseMap.Sample(textureSampler, input.texCoord) : 1.0f;
+    float4 specMapColor = (useSpecMap) ? specMap.Sample(textureSampler, input.texCoord) : 1.0f;
+    
+    float4 finalColor = (emissive + ambient + diffuse) * diffuseMapColor + (specular * specMapColor);
     
     return finalColor;
+    
+
 }
    

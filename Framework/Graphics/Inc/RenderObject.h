@@ -2,6 +2,8 @@
 
 #include "MeshBuffer.h"
 #include "Transform.h"
+#include "Material.h"
+#include "TextureManager.h"
 
 namespace Engine3D::Graphics
 {
@@ -12,5 +14,10 @@ namespace Engine3D::Graphics
 
 		Transform transform;
 		MeshBuffer meshBuffer;
+		Material material;
+		TextureId diffuseMapId;
+		TextureId specMapId;
+		TextureId normalMapId;
+		TextureId bumpMapId;
 	};
 }

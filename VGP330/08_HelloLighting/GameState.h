@@ -7,7 +7,7 @@ class GameState : public Engine3D::AppState
 {
 public:
 	void Initialize() override;
-    void Terminate() override;
+	void Terminate() override;
 	void Update(float deltaTime) override;
 	void Render() override;
 	void DebugUI() override;
