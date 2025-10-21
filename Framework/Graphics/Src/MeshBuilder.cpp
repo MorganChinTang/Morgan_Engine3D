@@ -310,7 +310,7 @@ MeshPC Engine3D::Graphics::MeshBuilder::CreateCylinderPC(int slices, int rings)
     return mesh;
 }
 
-MeshPC Engine3D::Graphics::MeshBuilder::CreateSpherePC(int slices, int rings, int radius)
+MeshPC Engine3D::Graphics::MeshBuilder::CreateSpherePC(int slices, int rings, float radius)
 {
     MeshPC mesh;
     int index = rand() % 100;
@@ -339,7 +339,7 @@ MeshPC Engine3D::Graphics::MeshBuilder::CreateSpherePC(int slices, int rings, in
     return mesh;
 }
 
-MeshPX Engine3D::Graphics::MeshBuilder::CreateSpherePX(int slices, int rings, int radius)
+MeshPX Engine3D::Graphics::MeshBuilder::CreateSpherePX(int slices, int rings, float radius)
 {
     MeshPX mesh;
 
@@ -373,7 +373,7 @@ MeshPX Engine3D::Graphics::MeshBuilder::CreateSpherePX(int slices, int rings, in
     return mesh;
 }
 
-Mesh Engine3D::Graphics::MeshBuilder::CreateSphere(int slices, int rings, int radius)
+Mesh Engine3D::Graphics::MeshBuilder::CreateSphere(int slices, int rings, float radius)
 {
     Mesh mesh;
 

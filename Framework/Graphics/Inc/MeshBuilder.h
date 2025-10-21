@@ -28,9 +28,9 @@ namespace Engine3D::Graphics
         static MeshPC CreateCylinderPC(int slices, int rings);
 
         //sphere
-        static MeshPC CreateSpherePC(int slices, int rings, int radius);
-        static MeshPX CreateSpherePX(int slices, int rings, int radius);
-        static Mesh CreateSphere(int slices, int rings, int radius);
+        static MeshPC CreateSpherePC(int slices, int rings, float radius);
+        static MeshPX CreateSpherePX(int slices, int rings, float radius);
+        static Mesh CreateSphere(int slices, int rings, float radius);
 
 
         //sky
