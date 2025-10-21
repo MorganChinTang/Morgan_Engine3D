@@ -44,7 +44,7 @@ void StandardEffect::Begin()
 	mLightBuffer.BindPS(1);
 	mMaterialBuffer.BindPS(2);
 	mSettingsBuffer.BindVS(3);
-	mSettingsBuffer.BindPS(4);
+	mSettingsBuffer.BindPS(3);
 }
 
 void StandardEffect::End()
