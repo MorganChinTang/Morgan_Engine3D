@@ -96,7 +96,10 @@ float4 PS(VS_OUTPUT input) :SV_Target
     }
     
     //emissive
-    float4 emissive = materialEmissive;
+    float edgeThickness = 0.85f;
+    float e = 1.0f - saturate(dot(view, n));
+    e = smoothstep(edgeThickness - 0.1f, edgeThickness + 0.1f, e);
+    float4 emissive = e * materialEmissive;
     
     //Ambient
     float4 ambient = lightAmbient * materialAmbient;
