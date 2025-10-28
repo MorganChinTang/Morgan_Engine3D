@@ -72,6 +72,7 @@ void GameState::DebugUI()
                 ImGui::ColorEdit4("Specular#Material", &material.specular.r);
                 ImGui::DragFloat("Shininess#Material", &material.shininess, 0.01f, 0.01f, 1000.0f);
             }
+            ImGui::PopID();
         }
     }
 
