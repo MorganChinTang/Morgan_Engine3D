@@ -11,6 +11,7 @@ namespace Engine3D::Graphics
 {
 	class Camera;
 	class RenderObject;
+	class RenderGroup;
 
 	class StandardEffect final
 	{
@@ -22,7 +23,7 @@ namespace Engine3D::Graphics
 		void End();
 
 		void Render(const RenderObject& renderObject);
-
+		void Render(const RenderGroup& renderGroup);
 		void SetCamera(const Camera& camera);
 		void SetDirectionalLight(const DirectionalLight& directionalLight);
 		void DebugUI();
