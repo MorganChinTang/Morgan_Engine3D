@@ -13,7 +13,12 @@ void GameState::Initialize()
     mDirectionalLight.diffuse = { 0.7f,0.7f,0.7f,1.0f };
     mDirectionalLight.specular = { 0.9f,0.9f,0.9f,1.0f };
 
-    mCharacter.Initialize(L"../../Assets/Models/Character01/Character01.model");
+    mCharacter1.Initialize(L"../../Assets/Models/Character01/Character01.model");
+    mCharacter2.Initialize(L"../../Assets/Models/Character02/Character02.model");
+    mCharacter3.Initialize(L"../../Assets/Models/Character03/Character03.model");
+    mCharacter2.transform.position = { 2.0f, 0.0f, 0.0f };
+    mCharacter3.transform.position = { -2.0f, 0.0f, 0.0f };
+
 
     std::filesystem::path shaderFile = L"../../Assets/Shaders/Standard.fx";
     mStandardEffect.Initialize(shaderFile);
@@ -23,7 +28,9 @@ void GameState::Initialize()
 }
 void GameState::Terminate()
 {
-    mCharacter.Terminate();
+    mCharacter1.Terminate();
+	mCharacter2.Terminate();
+    mCharacter3.Terminate();
     mStandardEffect.Terminate();
 }
 void GameState::Update(float deltaTime)
@@ -37,7 +44,9 @@ void GameState::Render()
     SimpleDraw::Render(mCamera);
 
     mStandardEffect.Begin();
-    mStandardEffect.Render(mCharacter);
+    mStandardEffect.Render(mCharacter1);
+	mStandardEffect.Render(mCharacter2);
+	mStandardEffect.Render(mCharacter3);
     mStandardEffect.End();
 }
 
@@ -58,9 +67,9 @@ void GameState::DebugUI()
 
     if (ImGui::CollapsingHeader("Material", ImGuiTreeNodeFlags_DefaultOpen))
     {
-        for (uint32_t i = 0; i < mCharacter.renderObjects.size(); i++)
+        for (uint32_t i = 0; i < mCharacter1.renderObjects.size(); i++)
         {
-            Material& material = mCharacter.renderObjects[i].material;
+            Material& material = mCharacter1.renderObjects[i].material;
             std::string renderObjectId = "RenderObject" + std::to_string(i);
             ImGui::PushID(renderObjectId.c_str());
             if (ImGui::CollapsingHeader("RenderObject"))

@@ -19,7 +19,9 @@ private:
 	Engine3D::Graphics::Camera mCamera;
 	Engine3D::Graphics::DirectionalLight mDirectionalLight;
 
-	Engine3D::Graphics::RenderGroup mCharacter;
+	Engine3D::Graphics::RenderGroup mCharacter1;
+	Engine3D::Graphics::RenderGroup mCharacter2;
+	Engine3D::Graphics::RenderGroup mCharacter3;
 	Engine3D::Graphics::StandardEffect mStandardEffect;
 
 };
