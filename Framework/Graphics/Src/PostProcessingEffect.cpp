@@ -137,7 +137,7 @@ void PostProcessingEffect::DebugUI()
 		if (ImGui::Combo("Mode", &currentMode, gModeNames, std::size(gModeNames)))
 		{
 			mMode = static_cast<PostProcessingEffect::Mode>(currentMode);
-		}
+		}S
 		if (mMode == Mode::Mirror)
 		{
 			ImGui::DragFloat("MirrorScaleX", &mMirrorScaleX, 0.1f, -1.0f, 1.0f);
