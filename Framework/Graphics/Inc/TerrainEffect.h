@@ -4,7 +4,6 @@
 #include "DirectionalLight.h"
 #include "PixelShader.h"
 #include "Material.h"
-#include "PixelShader.h"
 #include "VertexShader.h"
 #include "Sampler.h"
 
