@@ -17,6 +17,14 @@ void GameState::Initialize()
     mCharacter1.Initialize(L"../../Assets/Models/Character01/Character01.model");
     mCharacter2.Initialize(L"../../Assets/Models/Character02/Character02.model");
     mCharacter3.Initialize(L"../../Assets/Models/Character03/Character03.model");
+    s
+    // Load two textures for Character1 blending
+    //mCharacter1DiffuseMapId = TextureManager::Get()->LoadTexture(L"../../Assets/Textures/terrain/dirt_seamless.jpg");
+    for (auto& renderObject : mCharacter1.renderObjects)
+    {
+        TextureManager::Get()->ReleaseTexture(renderObject.specMapId);
+        renderObject.specMapId = TextureManager::Get()->LoadTexture(L"../../Assets/Textures/terrain/grass_2048.jpg");
+    }
 
     mCharacter1.transform.position = { 4.0f, 8.45f, 5.0f };
     mCharacter2.transform.position = { 5.0f, 8.7f, 5.0f };
@@ -54,9 +62,17 @@ void GameState::Initialize()
     mTerrainEffect.SetLightCamera(mShadowEffect.GetLightCamera());
     mTerrainEffect.SetDirectionalLight(mDirectionalLight);
     mTerrainEffect.SetShadowMap(mShadowEffect.GetDepthMap());
+
+    // Initialize DissolveEffect for Character1 with two textures
+    mDissolveEffect.Initialize();
+    mDissolveEffect.SetCamera(mCamera);
+    mDissolveEffect.SetLightCamera(mShadowEffect.GetLightCamera());
+    mDissolveEffect.SetDirectionalLight(mDirectionalLight);
+    mDissolveEffect.SetShadowMap(mShadowEffect.GetDepthMap());
 }
 void GameState::Terminate()
 {
+    mDissolveEffect.Terminate();
     mTerrainEffect.Terminate();
     mShadowEffect.Terminate();
     mStandardEffect.Terminate();
@@ -86,8 +102,12 @@ void GameState::Render()
     mTerrainEffect.Render(mGround);
     mTerrainEffect.End();
 
+    // Render Character1 with DissolveEffect (two texture blending)
+    mDissolveEffect.Begin();
+        mDissolveEffect.Render(mCharacter1);
+    mDissolveEffect.End();
+
     mStandardEffect.Begin();
-    mStandardEffect.Render(mCharacter1);
     mStandardEffect.Render(mCharacter2);
     mStandardEffect.Render(mCharacter3);
     mStandardEffect.Render(mSphere1);
@@ -137,6 +157,7 @@ void GameState::DebugUI()
     ImGui::Separator();
     mShadowEffect.DebugUI();
     mTerrainEffect.DebugUI();
+    mDissolveEffect.DebugUI();
     ImGui::End();
 }
 

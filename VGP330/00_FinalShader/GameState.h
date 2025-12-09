@@ -33,4 +33,7 @@ private:
 	Engine3D::Graphics::ShadowEffect mShadowEffect;
 	Engine3D::Graphics::TerrainEffect mTerrainEffect;
 	Engine3D::Graphics::DissolveEffect mDissolveEffect;
+
+	uint32_t mCharacter1DiffuseMapId;
+	uint32_t mCharacter1SpecMapId;
 };

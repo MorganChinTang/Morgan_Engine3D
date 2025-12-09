@@ -1,4 +1,4 @@
-// Terrain Effect file that blends 2 textures based on pixel height in the world
+// Character Dissolve Effect file that blends 2 textures based on pixel height in the world
 
 cbuffer TransformBuffer : register(b0)
 {
@@ -37,7 +37,6 @@ cbuffer SettingsBuffer : register(b3)
 Texture2D lowTextureMap : register(t0);
 Texture2D highTextureMap : register(t1);
 Texture2D shadowMap : register(t2);
-Texture2D midTextureMap : register(t3);
 
 SamplerState textureSampler : register(s0);
 
@@ -98,22 +97,33 @@ float4 PS(VS_OUTPUT input) : SV_Target
     float s = pow(base, MaterialShininess);
     float4 specular = s * lightSpecular * MaterialSpecular;
     
-    //dividing two textures
-    //added midMapColor for the edge
+    // Blend two textures based on world height
     float4 lowMapColor = lowTextureMap.Sample(textureSampler, input.texCoord);
-    float4 midMapColor = midTextureMap.Sample(textureSampler, input.texCoord);
     float4 highMapColor = highTextureMap.Sample(textureSampler, input.texCoord);
     float4 diffuseColor = lowMapColor;
-    float4 emissiveColor = midMapColor;
     
-    if (input.worldPosition.y > lowHeight)
+    // Read the Standard.fx and get the diffuse and specular colors to apply (if you use the character colors)
+    // to get the edge, can use a texture (maybe use the bumpMapId slot to apply)
+    // then during the blend 
+    
+    if (input.worldPosition.y > lowHeight + blendHeight)
     {
-        diffuseColor = highMapColor;
+        //diffuseColor = highMapColor;
+        diffuseColor.a = 0.1f;
     }
     else
     {
+        // to get the "edge color", change this color here
+        // diffuse.rgb = yellow
         float t = saturate((input.worldPosition.y - lowHeight) / blendHeight);
-        diffuseColor = lerp(lowMapColor, highMapColor, t);
+        if(t > 0.0f)
+        {
+            diffuseColor.a = lerp(1.0f, 0.0f, t);
+            diffuseColor.rgb = float3(1.0f, 1.0f, 0.0f);
+            return diffuseColor;
+        }
+        // can lerp from 0-1 and get thicker or thinner closer to the center
+        //diffuseColor = lerp(lowMapColor, highMapColor, t);
     }
     
     

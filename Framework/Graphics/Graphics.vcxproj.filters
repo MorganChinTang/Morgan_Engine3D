@@ -188,7 +188,7 @@
     <ClCompile Include="Src\TerrainEffect.cpp">
       <Filter>Src</Filter>
     </ClCompile>
-    <ClCompile Include="Inc\Dissolve.cpp">
+    <ClCompile Include="Src\Dissolve.cpp">
       <Filter>Src</Filter>
     </ClCompile>
   </ItemGroup>

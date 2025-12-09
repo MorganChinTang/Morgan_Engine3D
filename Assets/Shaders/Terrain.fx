@@ -100,7 +100,7 @@ float4 PS(VS_OUTPUT input): SV_Target
     float4 lowMapColor = lowTextureMap.Sample(textureSampler, input.texCoord);
     float4 highMapColor = highTextureMap.Sample(textureSampler, input.texCoord);
     float4 diffuseColor = lowMapColor;
-    if(input.worldPosition.y > lowHeight)
+    if(input.worldPosition.y > lowHeight + blendHeight)
     {
         diffuseColor = highMapColor;
     }

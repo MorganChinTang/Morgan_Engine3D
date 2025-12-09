@@ -6,12 +6,14 @@
 #include "Material.h"
 #include "VertexShader.h"
 #include "Sampler.h"
+#include "BlendState.h"
 
 namespace Engine3D::Graphics
 {
 	class Camera;
 	class Texture;
 	class RenderObject;
+	class RenderGroup;
 
 	class DissolveEffect final
 	{
@@ -23,6 +25,7 @@ namespace Engine3D::Graphics
 		void End();
 
 		void Render(const RenderObject& renderObject);
+		void Render(const RenderGroup& renderGroup);
 		void DebugUI();
 
 		void SetCamera(const Camera& camera);
@@ -43,8 +46,8 @@ namespace Engine3D::Graphics
 		{
 			int useShadowMap = 1;
 			float depthBias = 0.000003f;
-			float lowHeight = 5.0f;
-			float blendHeight = 1.0f;
+			float lowHeight = 9.0f;
+			float blendHeight = 0.05f;
 		};
 
 		using TransformBuffer = TypedConstantBuffer<TransformData>;
@@ -60,6 +63,7 @@ namespace Engine3D::Graphics
 		VertexShader mVertexShader;
 		PixelShader mPixelShader;
 		Sampler mSampler;
+		BlendState mBlendState;
 
 		SettingsData mSettingsData;
 		const Camera* mCamera = nullptr;
