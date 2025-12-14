@@ -5,22 +5,48 @@ using namespace Engine3D::Input;
 
 void GameState::Initialize()
 {
-    mCamera.SetPosition({ 5.0f, 9.0f, 1.0f });
-    mCamera.SetLookAt({ 5.0f, 8.0f, 5.0f });
+    mCamera.SetPosition({ 5.0f, 9.5f, 0.0f });
+    mCamera.SetLookAt({ 5.0f, 9.5f, 5.0f });
 
     mDirectionalLight.direction = Math::Normalize({ 1.0f,-1.0f, 1.0 });
-    mDirectionalLight.ambient = { 0.4f,0.4f,0.4f,1.0f };
-    mDirectionalLight.diffuse = { 0.7f,0.7f,0.7f,1.0f };
-    mDirectionalLight.specular = { 0.9f,0.9f,0.9f,1.0f };
+    mDirectionalLight.ambient = { 1.5f,1.5f,1.5f,1.0f };
+    mDirectionalLight.diffuse = { 2.2f,2.2f,2.2f,1.0f };
+    mDirectionalLight.specular = { 2.2f,2.2f,2.2f,1.0f };
 
+    mRenderTargetCamera.SetPosition({ 0.0f, 10.0f, 30.0f });
+    mRenderTargetCamera.SetLookAt({ 0.0f, 0.0f, 0.0f });
+    mRenderTargetCamera.SetAspectRatio(1.0f);
+
+    mRenderTargetCamera.SetNearPlane(1.0f);
+    mRenderTargetCamera.SetFarPlane(1000.0f);
+
+    // Initialize RenderTarget
+    mRenderTarget.Initialize(128, 128, RenderTarget::Format::RGBA_U8);
     //Characters
     mCharacter1.Initialize(L"../../Assets/Models/Character01/Character01.model");
     mCharacter2.Initialize(L"../../Assets/Models/Character02/Character02.model");
     mCharacter3.Initialize(L"../../Assets/Models/Character03/Character03.model");
-    s
+
+    // Sky Sphere Space
+    MeshPX skySphere = MeshBuilder::CreateSkySpherePX(30, 30, 500.0f);
+    mSkySphere.renderData.textureId = TextureManager::Get()->LoadTexture(L"../../Assets/Textures/skysphere/sky_27_2k.png");
+    mSkySphere.renderData.mesh.Initialize(skySphere);
+
     // Load two textures for Character1 blending
     //mCharacter1DiffuseMapId = TextureManager::Get()->LoadTexture(L"../../Assets/Textures/terrain/dirt_seamless.jpg");
     for (auto& renderObject : mCharacter1.renderObjects)
+    {
+        TextureManager::Get()->ReleaseTexture(renderObject.specMapId);
+        renderObject.specMapId = TextureManager::Get()->LoadTexture(L"../../Assets/Textures/terrain/grass_2048.jpg");
+    }
+
+    for (auto& renderObject : mCharacter2.renderObjects)
+    {
+        TextureManager::Get()->ReleaseTexture(renderObject.specMapId);
+        renderObject.specMapId = TextureManager::Get()->LoadTexture(L"../../Assets/Textures/terrain/grass_2048.jpg");
+    }
+
+    for (auto& renderObject : mCharacter3.renderObjects)
     {
         TextureManager::Get()->ReleaseTexture(renderObject.specMapId);
         renderObject.specMapId = TextureManager::Get()->LoadTexture(L"../../Assets/Textures/terrain/grass_2048.jpg");
@@ -35,17 +61,6 @@ void GameState::Initialize()
     mGround.meshBuffer.Initialize(mTerrain.mesh);
     mGround.diffuseMapId = TextureManager::Get()->LoadTexture(L"../../Assets/Textures/terrain/dirt_seamless.jpg");
     mGround.specMapId = TextureManager::Get()->LoadTexture(L"../../Assets/Textures/terrain/grass_2048.jpg");
-    //Sphere1 Mesh
-    Mesh sphere1 = MeshBuilder::CreateSphere(20, 20, 0.5f);
-    mSphere1.transform.position = { 1.0f, 0.7f, 0.0f };
-    mSphere1.meshBuffer.Initialize(sphere1);
-    mSphere1.diffuseMapId = TextureManager::Get()->LoadTexture(L"../../Assets/Textures/misc/basketball.jpg");
-
-    //Sphere2 Mesh
-    Mesh sphere2 = MeshBuilder::CreateSphere(20, 20, 0.5f);
-    mSphere2.transform.position = { -1.0f, 0.7f, 0.0f };
-    mSphere2.meshBuffer.Initialize(sphere2);
-    mSphere2.diffuseMapId = TextureManager::Get()->LoadTexture(L"../../Assets/Textures/misc/basketball.jpg");
 
     std::filesystem::path shaderFile = L"../../Assets/Shaders/Standard.fx";
     mStandardEffect.Initialize(shaderFile);
@@ -69,9 +84,15 @@ void GameState::Initialize()
     mDissolveEffect.SetLightCamera(mShadowEffect.GetLightCamera());
     mDissolveEffect.SetDirectionalLight(mDirectionalLight);
     mDissolveEffect.SetShadowMap(mShadowEffect.GetDepthMap());
+
+    // Initialize SimpleTextureEffect for sky sphere rendering
+    mSimpleTextureEffect.Initialize();
+    mSimpleTextureEffect.SetCamera(mCamera);
 }
 void GameState::Terminate()
 {
+    TextureManager::Get()->ReleaseTexture(mSkySphere.renderData.textureId);
+    mSimpleTextureEffect.Terminate();
     mDissolveEffect.Terminate();
     mTerrainEffect.Terminate();
     mShadowEffect.Terminate();
@@ -79,9 +100,9 @@ void GameState::Terminate()
     mCharacter1.Terminate();
     mCharacter2.Terminate();
     mCharacter3.Terminate();
-    mSphere1.Terminate();
-    mSphere2.Terminate();
     mGround.Terminate();
+    mSkySphere.renderData.mesh.Terminate();
+    mRenderTarget.Terminate();
 }
 void GameState::Update(float deltaTime)
 {
@@ -90,6 +111,7 @@ void GameState::Update(float deltaTime)
 
 void GameState::Render()
 {
+    mRenderTarget.BeginRender();
     mShadowEffect.Begin();
     mShadowEffect.Render(mCharacter1);
     mShadowEffect.Render(mCharacter2);
@@ -105,20 +127,37 @@ void GameState::Render()
     // Render Character1 with DissolveEffect (two texture blending)
     mDissolveEffect.Begin();
         mDissolveEffect.Render(mCharacter1);
+        mDissolveEffect.Render(mCharacter2);
+        mDissolveEffect.Render(mCharacter3);
+    mDissolveEffect.End();
+
+    mRenderTarget.EndRender();
+
+    // Render sky sphere first (background)
+    mSimpleTextureEffect.Begin();
+    mSimpleTextureEffect.Render(mSkySphere.renderData);
+    mSimpleTextureEffect.End();
+
+    // Render terrain
+    //mTerrainEffect.Begin();
+    //mTerrainEffect.Render(mGround);
+    //mTerrainEffect.End();
+
+    // Render characters with DissolveEffect
+    mDissolveEffect.Begin();
+    mDissolveEffect.Render(mCharacter1);
+    mDissolveEffect.Render(mCharacter2);
+    mDissolveEffect.Render(mCharacter3);
     mDissolveEffect.End();
 
     mStandardEffect.Begin();
-    mStandardEffect.Render(mCharacter2);
-    mStandardEffect.Render(mCharacter3);
-    mStandardEffect.Render(mSphere1);
-    mStandardEffect.Render(mSphere2);
     mStandardEffect.End();
 }
 
 void GameState::DebugUI()
 {
     ImGui::Begin("Debug", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
-    if (ImGui::CollapsingHeader("Light", ImGuiTreeNodeFlags_DefaultOpen))
+    if (ImGui::CollapsingHeader("Light", ImGuiTreeNodeFlags_None))
     {
         if (ImGui::DragFloat3("DirectionalLight", &mDirectionalLight.direction.x, 0.01f))
         {
@@ -130,7 +169,7 @@ void GameState::DebugUI()
         ImGui::ColorEdit4("Specular#Light", &mDirectionalLight.specular.r);
     }
 
-    if (ImGui::CollapsingHeader("Material", ImGuiTreeNodeFlags_DefaultOpen))
+    if (ImGui::CollapsingHeader("Material", ImGuiTreeNodeFlags_None))
     {
         for (uint32_t i = 0; i < mCharacter1.renderObjects.size(); i++)
         {
@@ -197,12 +236,5 @@ void GameState::UpdateCamera(float deltaTime)
         mCamera.Pitch(input->GetMouseMoveY() * turnSpeed * deltaTime);
     }
 
-    Math::Vector3 cameraPosition = mCamera.GetPosition();
-    float height = mTerrain.GetHeight(mCamera.GetPosition());
-    if (height > 0.0f)
-    {
-        cameraPosition.y = height + 1.5f;
-        mCamera.SetPosition(cameraPosition);
-    }
 }
 

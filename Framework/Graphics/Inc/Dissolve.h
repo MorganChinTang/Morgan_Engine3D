@@ -44,10 +44,10 @@ namespace Engine3D::Graphics
 		};
 		struct SettingsData
 		{
-			int useShadowMap = 1;
+			int useShadowMap = 0;
 			float depthBias = 0.000003f;
-			float lowHeight = 9.0f;
-			float blendHeight = 0.05f;
+			float lowHeight = 9.11f;
+			float blendHeight = 0.45f;
 		};
 
 		using TransformBuffer = TypedConstantBuffer<TransformData>;

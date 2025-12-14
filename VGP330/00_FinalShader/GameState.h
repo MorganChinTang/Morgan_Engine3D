@@ -13,7 +13,14 @@ public:
 	void DebugUI() override;
 
 private:
-
+	struct SkySphere
+	{
+		float radius;
+		float distanceFromSun;
+		float orbitSpeed;
+		float rotSpeed;
+		Engine3D::Graphics::SimpleTextureEffect::RenderData renderData;
+	};
 	void UpdateCamera(float deltaTime);
 
 	Engine3D::Graphics::Camera mCamera;
@@ -33,7 +40,17 @@ private:
 	Engine3D::Graphics::ShadowEffect mShadowEffect;
 	Engine3D::Graphics::TerrainEffect mTerrainEffect;
 	Engine3D::Graphics::DissolveEffect mDissolveEffect;
+	Engine3D::Graphics::SimpleTextureEffect mSimpleTextureEffect;
+
+	SkySphere mSkySphere;
+	//render target
+	Engine3D::Graphics::RenderTarget mRenderTarget;
+	Engine3D::Graphics::Camera mRenderTargetCamera;
 
 	uint32_t mCharacter1DiffuseMapId;
 	uint32_t mCharacter1SpecMapId;
+	uint32_t mCharacter2DiffuseMapId;
+	uint32_t mCharacter2SpecMapId;
+	uint32_t mCharacter3DiffuseMapId;
+	uint32_t mCharacter3SpecMapId;
 };

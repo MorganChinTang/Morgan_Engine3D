@@ -40,6 +40,48 @@ Texture2D shadowMap : register(t2);
 
 SamplerState textureSampler : register(s0);
 
+// Get random value based on 2D position
+float hash(float2 p)
+{
+    return frac(sin(dot(p, float2(12.9898, 78.233))) * 43758.5453);
+}
+
+// Crete perlin noise
+float noise(float2 p)
+{
+    float2 i = floor(p);
+    float2 f = frac(p);
+    f = f * f * (3.0 - 2.0 * f);
+    
+    float a = hash(i);
+    float b = hash(i + float2(1.0, 0.0));
+    float c = hash(i + float2(0.0, 1.0));
+    float d = hash(i + float2(1.0, 1.0));
+    
+    float ab = lerp(a, b, f.x);
+    float cd = lerp(c, d, f.x);
+    return lerp(ab, cd, f.y);
+}
+
+// Create fractal noise
+float fractalNoise(float2 p)
+{
+    float value = 0.0f;
+    float amplitude = 1.0f;
+    float frequency = 1.0f;
+    float maxValue = 0.0f;
+    
+    for(int i = 0; i < 4; i++)
+    {
+        value += amplitude * noise(p * frequency);
+        maxValue += amplitude;
+        amplitude *= 0.5f;
+        frequency *= 2.0f;
+    }
+    
+    return value / maxValue;
+}
+
 struct VS_INPUT
 {
     float3 position : POSITION;
@@ -101,10 +143,7 @@ float4 PS(VS_OUTPUT input) : SV_Target
     float4 lowMapColor = lowTextureMap.Sample(textureSampler, input.texCoord);
     float4 highMapColor = highTextureMap.Sample(textureSampler, input.texCoord);
     float4 diffuseColor = lowMapColor;
-    
-    // Read the Standard.fx and get the diffuse and specular colors to apply (if you use the character colors)
-    // to get the edge, can use a texture (maybe use the bumpMapId slot to apply)
-    // then during the blend 
+
     
     if (input.worldPosition.y > lowHeight + blendHeight)
     {
@@ -113,17 +152,44 @@ float4 PS(VS_OUTPUT input) : SV_Target
     }
     else
     {
-        // to get the "edge color", change this color here
-        // diffuse.rgb = yellow
         float t = saturate((input.worldPosition.y - lowHeight) / blendHeight);
-        if(t > 0.0f)
+
+        // Three layers of noise to create a non uniform jagged edge
+        float edgeNoise = fractalNoise(input.worldPosition.xz * 2.0f);
+        float edgeNoise2 = fractalNoise(input.worldPosition.xz * 5.0f + 100.0f);
+        float edgeNoise3 = fractalNoise(input.worldPosition.xz * 12.0f + 200.0f);
+        
+        // Blend the three noise patterns
+        float combinedNoise = lerp(edgeNoise, edgeNoise2, 0.4f);
+        combinedNoise = lerp(combinedNoise, edgeNoise3, 0.35f);
+        
+        // Amplify the noise variation to create dramatic ups and downs
+        combinedNoise = (combinedNoise - 0.5f) * 1.4f + 0.5f;
+        combinedNoise = saturate(combinedNoise);
+        float noiseThreshold = combinedNoise * 0.4f + 0.3f;
+        
+        // Thickness of the edge effect
+        float edgeGradient = smoothstep(noiseThreshold - 0.08f, noiseThreshold + 0.08f, t);
+        float distToThreshold = t - noiseThreshold;
+        if(distToThreshold > 0.08f)
         {
-            diffuseColor.a = lerp(1.0f, 0.0f, t);
-            diffuseColor.rgb = float3(1.0f, 1.0f, 0.0f);
-            return diffuseColor;
+            // In between top and the noisy edge
+            diffuseColor = lowMapColor;
+            diffuseColor.a = 0.1f;
         }
-        // can lerp from 0-1 and get thicker or thinner closer to the center
-        //diffuseColor = lerp(lowMapColor, highMapColor, t);
+        else if(distToThreshold > -0.08f)
+        {
+            // The edge effect
+            float glowIntensity = 1.0f - edgeGradient;
+            // Cyan glow color
+            diffuseColor.rgb = float3(0.0f, 1.0f, 1.0f);
+            diffuseColor.a = glowIntensity;
+        }
+        else
+        {
+            // Below the edge
+            diffuseColor = lowMapColor;
+        }
     }
     
     

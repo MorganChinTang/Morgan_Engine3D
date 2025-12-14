@@ -97,7 +97,7 @@ void TerrainEffect::Render(const RenderObject& renderObject)
 }
 void TerrainEffect::DebugUI()
 {
-	if (ImGui::CollapsingHeader("TerrainEffect", ImGuiTreeNodeFlags_DefaultOpen))
+	if (ImGui::CollapsingHeader("TerrainEffect", ImGuiTreeNodeFlags_None))
 	{
 		bool useShadowMap = mSettingsData.useShadowMap > 0;
 		if (ImGui::Checkbox("UseShadowMap##TerrainEffect", &useShadowMap))
