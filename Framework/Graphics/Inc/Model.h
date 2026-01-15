@@ -2,6 +2,7 @@
 
 #include "MeshTypes.h"
 #include "Material.h"
+#include "Skeleton.h"
 
 namespace Engine3D::Graphics
 {
@@ -25,5 +26,6 @@ namespace Engine3D::Graphics
 
 		std::vector<MeshData> meshData;
 		std::vector<MaterialData> materialData;
+		std::unique_ptr<Skeleton> skeleton;
 	};
 }
