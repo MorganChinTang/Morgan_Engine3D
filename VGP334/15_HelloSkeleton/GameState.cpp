@@ -14,7 +14,11 @@ void GameState::Initialize()
     mDirectionalLight.specular = { 0.9f,0.9f,0.9f,1.0f };
 
     mCharacter1.Initialize(L"../../Assets/Models/Character01/Character01.model");
+    mCharacter2.Initialize(L"../../Assets/Models/Character02/Character02.model");
+    mCharacter3.Initialize(L"../../Assets/Models/Character03/Character03.model");
 
+    mCharacter2.transform.position = { 2.0f, 0.0f, 0.0f };
+    mCharacter3.transform.position = { -2.0f, 0.0f, 0.0f };
 
     std::filesystem::path shaderFile = L"../../Assets/Shaders/Standard.fx";
     mStandardEffect.Initialize(shaderFile);
@@ -25,6 +29,8 @@ void GameState::Initialize()
 void GameState::Terminate()
 {
     mCharacter1.Terminate();
+    mCharacter2.Terminate();
+    mCharacter3.Terminate();
     mStandardEffect.Terminate();
 }
 void GameState::Update(float deltaTime)
@@ -38,7 +44,11 @@ void GameState::Render()
     {
         AnimationUtil::BoneTransforms boneTransforms;
         AnimationUtil::ComputeBoneTransforms(mCharacter1.modelId, boneTransforms);
+        AnimationUtil::ComputeBoneTransforms(mCharacter2.modelId, boneTransforms);
+        AnimationUtil::ComputeBoneTransforms(mCharacter3.modelId, boneTransforms);
         AnimationUtil::DrawSkeleton(mCharacter1.modelId, boneTransforms);
+        AnimationUtil::DrawSkeleton(mCharacter2.modelId, boneTransforms);
+        AnimationUtil::DrawSkeleton(mCharacter3.modelId, boneTransforms);
         SimpleDraw::AddGroundPlane(20.0f, Colors::DarkGray);
         SimpleDraw::Render(mCamera);
         
@@ -50,6 +60,8 @@ void GameState::Render()
 
         mStandardEffect.Begin();
         mStandardEffect.Render(mCharacter1);
+        mStandardEffect.Render(mCharacter2);
+        mStandardEffect.Render(mCharacter3);
         mStandardEffect.End();
     }
    

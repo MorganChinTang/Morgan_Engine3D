@@ -49,9 +49,9 @@ namespace Engine3D::Graphics
 			int useNormalMap = 1;
 			int useBumpMap = 1;
 			int useShadowMap = 1;
+			int useSkinning = 1;
 			float bumpWeight = 0.1f;
 			float depthBias = 0.000003f;
-			float padding = 0.0f;
 		};
 
 		using TransformBuffer = TypedConstantBuffer<TransformData>;
@@ -65,6 +65,9 @@ namespace Engine3D::Graphics
 
 		using SettingsBuffer = TypedConstantBuffer<SettingsData>;
         SettingsBuffer mSettingsBuffer;
+
+		using BoneTransformBuffer = ConstantBuffer;
+		BoneTransformBuffer mBoneTransformBuffer;
 
 		VertexShader mVertexShader;
 		PixelShader mPixelShader;

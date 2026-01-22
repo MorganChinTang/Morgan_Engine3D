@@ -11,4 +11,6 @@ namespace Engine3D::Graphics::AnimationUtil
 	void ComputeBoneTransforms(ModelId modelId, BoneTransforms& boneTransforms);
 	// to be called after ComputeBoneTransforms. draws the skeketon hierarchy
 	void DrawSkeleton(ModelId modelId, const BoneTransforms& boneTransforms);
+	//to be called to apply bone offsets for skinning data
+	void ApplyBoneOffset(ModelId modelId, BoneTransforms& boneTransforms);
 }
