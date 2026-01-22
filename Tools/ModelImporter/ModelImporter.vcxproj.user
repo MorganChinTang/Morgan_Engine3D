@@ -2,6 +2,6 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
-    <LocalDebuggerCommandArguments>-scale 0.01 ../../Assets/Models/Character03/Character03.fbx ../../Assets/Models/Character03/Character03.model</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>-scale 0.01 ../../Assets/Models/Character01/Character01.fbx ../../Assets/Models/Character01/Character01.model</LocalDebuggerCommandArguments>
   </PropertyGroup>
 </Project>

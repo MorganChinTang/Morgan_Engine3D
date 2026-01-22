@@ -8,6 +8,8 @@
 
 namespace Engine3D::Graphics
 {
+	struct Skeleton;
+
 	class RenderObject
 	{
 	public:
@@ -31,5 +33,6 @@ namespace Engine3D::Graphics
 		ModelId modelId;
 		Transform transform;
 		std::vector<RenderObject> renderObjects;
+		const Skeleton* skeleton;
 	};
 }
