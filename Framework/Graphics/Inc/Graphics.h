@@ -7,7 +7,9 @@
 
 #include "Animation.h"
 #include "AnimationBuilder.h"
+#include "AnimationClip.h"
 #include "AnimationUtil.h"
+#include "Animator.h"
 #include "BlendState.h"
 #include "Bone.h"
 #include "Camera.h"

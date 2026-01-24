@@ -84,6 +84,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "14_HelloAnimation", "VGP334
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "15_HelloSkeleton", "VGP334\15_HelloSkeleton\15_HelloSkeleton.vcxproj", "{F0B127AC-410E-4A5C-B454-4DDAECA42D6A}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "16_HelloSkeletonAnimation", "VGP334\16_HelloSkeletonAnimation\16_HelloSkeletonAnimation.vcxproj", "{6EB4787A-7385-43E6-AAD2-35E6AA9FC8C4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -292,6 +294,14 @@ Global
 		{F0B127AC-410E-4A5C-B454-4DDAECA42D6A}.Release|x64.Build.0 = Release|x64
 		{F0B127AC-410E-4A5C-B454-4DDAECA42D6A}.Release|x86.ActiveCfg = Release|Win32
 		{F0B127AC-410E-4A5C-B454-4DDAECA42D6A}.Release|x86.Build.0 = Release|Win32
+		{6EB4787A-7385-43E6-AAD2-35E6AA9FC8C4}.Debug|x64.ActiveCfg = Debug|x64
+		{6EB4787A-7385-43E6-AAD2-35E6AA9FC8C4}.Debug|x64.Build.0 = Debug|x64
+		{6EB4787A-7385-43E6-AAD2-35E6AA9FC8C4}.Debug|x86.ActiveCfg = Debug|Win32
+		{6EB4787A-7385-43E6-AAD2-35E6AA9FC8C4}.Debug|x86.Build.0 = Debug|Win32
+		{6EB4787A-7385-43E6-AAD2-35E6AA9FC8C4}.Release|x64.ActiveCfg = Release|x64
+		{6EB4787A-7385-43E6-AAD2-35E6AA9FC8C4}.Release|x64.Build.0 = Release|x64
+		{6EB4787A-7385-43E6-AAD2-35E6AA9FC8C4}.Release|x86.ActiveCfg = Release|Win32
+		{6EB4787A-7385-43E6-AAD2-35E6AA9FC8C4}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -323,6 +333,7 @@ Global
 		{6EE48CD6-7542-437A-B32A-1BDF3C6143D8} = {FDAF19A3-4018-4276-BCB9-EDC88781B27D}
 		{9EFE4E51-454A-4AFF-AEE5-26668E192C64} = {83EE5C27-CE0F-4481-BC1D-F0E8A3C2F4C2}
 		{F0B127AC-410E-4A5C-B454-4DDAECA42D6A} = {83EE5C27-CE0F-4481-BC1D-F0E8A3C2F4C2}
+		{6EB4787A-7385-43E6-AAD2-35E6AA9FC8C4} = {83EE5C27-CE0F-4481-BC1D-F0E8A3C2F4C2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3FD362C1-9DCF-4C30-BA1C-7C60EAFBEABC}

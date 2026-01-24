@@ -48,6 +48,12 @@ ModelId ModelManager::LoadModel(const std::filesystem::path& filePath)
 	}
 	return modelId;
 }
+void ModelManager::AddAnimation(ModelId id, const std::filesystem::path& filePath)
+{
+	auto model = mInventory.find(id);
+	ASSERT(model != mInventory.end(), "ModelManager: model not found for animation");
+	ModelIO::LoadAnimation(filePath, *model->second);
+}
 const Model* ModelManager::GetModel(ModelId id)
 {
 	auto model = mInventory.find(id);

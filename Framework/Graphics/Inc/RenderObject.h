@@ -5,6 +5,7 @@
 #include "Material.h"
 #include "TextureManager.h"
 #include "ModelManager.h"
+#include "Animator.h"
 
 namespace Engine3D::Graphics
 {
@@ -33,6 +34,8 @@ namespace Engine3D::Graphics
 		ModelId modelId;
 		Transform transform;
 		std::vector<RenderObject> renderObjects;
+
 		const Skeleton* skeleton;
+		const Animator* animator;
 	};
 }
