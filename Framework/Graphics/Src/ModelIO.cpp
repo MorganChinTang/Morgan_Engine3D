@@ -401,7 +401,7 @@ void ModelIO::LoadAnimation(std::filesystem::path filePath, Model& model)
         animClipData.boneAnimations.resize(boneAnimCount);
         for (uint32_t b = 0; b < boneAnimCount; b++)
         {
-            char tag[128];
+            char tag[128]{};
             fscanf_s(file, "%s\n", tag, (uint32_t)sizeof(tag));
             if (strcmp(tag, "<ANIMATION>") == 0)
             {
