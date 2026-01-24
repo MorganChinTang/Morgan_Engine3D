@@ -3,4 +3,4 @@
 -scale 0.01 ../../Assets/Models/Character03/Character03.fbx ../../Assets/Models/Character03/Character03.model
 
 //anim import command
--scale 0.01 ../../Assets/Animations/Character01/SambaDancing.fbx ../../Assets/Animations/Character01/SambaDancing.fbx
+-animOnly 1-scale 0.01 ../../Assets/Animations/Character01/SambaDancing.fbx ../../Assets/Animations/Character01/SambaDancing.fbx

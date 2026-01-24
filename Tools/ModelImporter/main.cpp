@@ -79,10 +79,10 @@ Color ToColor(const aiColor3D& c)
 Quaternion ToQuaternion(const aiQuaternion& q)
 {
     return{
-        static_cast<float>(q.w),
         static_cast<float>(q.x),
         static_cast<float>(q.y),
-        static_cast<float>(q.z)
+        static_cast<float>(q.z),
+        static_cast<float>(q.w)
     };
 }
 

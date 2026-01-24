@@ -4,34 +4,34 @@
 
 namespace Engine3D::Graphics
 {
-	using ModelId = std::size_t;
+    using ModelId = std::size_t;
 
-	class ModelManager final
-	{
-	public: 
-		static void StaticInitialize(const std::filesystem::path& rootPath);
-		static void StaticTerminate();
-		static ModelManager* Get();
+    class ModelManager final
+    {
+    public: 
+        static void StaticInitialize(const std::filesystem::path& rootPath);
+        static void StaticTerminate();
+        static ModelManager* Get();
 
-		ModelManager() = default;
-		~ModelManager() = default;
+        ModelManager() = default;
+        ~ModelManager() = default;
 
-		ModelManager(const ModelManager&) = delete;
-		ModelManager(const ModelManager&&) = delete;
-		ModelManager& operator=(const ModelManager&) = delete;
-		ModelManager& operator=(const ModelManager&&) = delete;
+        ModelManager(const ModelManager&) = delete;
+        ModelManager(const ModelManager&&) = delete;
+        ModelManager& operator=(const ModelManager&) = delete;
+        ModelManager& operator=(const ModelManager&&) = delete;
 
-		void SetRootDirectory(const std::filesystem::path& rootPath);
-		ModelId GetModelId(const std::filesystem::path& filePath);
-		ModelId LoadModel(const std::filesystem::path& filePath);
-		void AddAnimation(ModelId id, const std::filesystem::path& filePath);
-		const Model* GetModel(ModelId id);
-	
-	private:
-		using Inventory = std::map<ModelId, std::unique_ptr<Model>>;
-		Inventory mInventory;
+        void SetRootDirectory(const std::filesystem::path& rootPath);
+        ModelId GetModelId(const std::filesystem::path& filePath);
+        ModelId LoadModel(const std::filesystem::path& filePath);
+        void AddAnimation(ModelId id, const std::filesystem::path& filePath);
+        const Model* GetModel(ModelId id);
+    
+    private:
+        using Inventory = std::map<ModelId, std::unique_ptr<Model>>;
+        Inventory mInventory;
 
-		std::filesystem::path mRootDirectory;
-		
-	};
+        std::filesystem::path mRootDirectory;
+        
+    };
 }

@@ -35,7 +35,7 @@ namespace Engine3D::Graphics
 		Transform transform;
 		std::vector<RenderObject> renderObjects;
 
-		const Skeleton* skeleton;
-		const Animator* animator;
+		const Skeleton* skeleton = nullptr;
+		const Animator* animator = nullptr;
 	};
 }
