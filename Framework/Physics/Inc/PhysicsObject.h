@@ -1,0 +1,21 @@
+#pragma once
+
+// is an object that connects to the physics world
+// must be inherited to register with the world
+
+namespace Engine3D::Physics
+{
+    class PhysicsObject
+    {
+    public:
+        PhysicsObject() = default;
+        virtual ~PhysicsObject() = default;
+
+    protected:
+        friend class PhysicsWorld;
+
+        // abstract function
+        virtual void SyncWithGraphics() = 0;
+        virtual btRigidBody* GetRigidBody() { return nullptr; }
+    };
+}

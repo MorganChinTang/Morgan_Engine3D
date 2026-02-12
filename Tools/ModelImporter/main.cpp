@@ -470,7 +470,7 @@ int main(int argc, char* argv[])
         }
     }
 
-    if (!args.animOnly)
+     if (!args.animOnly)
     {
         printf("Saving Model...\n");
         ModelIO::SaveModel(args.outputFileName, model);
@@ -480,10 +480,10 @@ int main(int argc, char* argv[])
 
         printf("Saving Skeleton...\n");
         ModelIO::SaveSkeleton(args.outputFileName, model);
-
-        printf("Saving Animations...\n");
-        ModelIO::SaveAnimation(args.outputFileName, model);
     }
+
+   printf("Saving Animations...\n");
+   ModelIO::SaveAnimation(args.outputFileName, model);
 
 
 
