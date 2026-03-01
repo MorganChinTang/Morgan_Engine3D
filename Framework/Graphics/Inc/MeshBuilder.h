@@ -41,7 +41,9 @@ namespace Engine3D::Graphics
         static MeshPX CreateOBJPX(const std::filesystem::path& filePath, float scale);
 
         //ScreenQuad
-		    static MeshPX CreateScreenQuadPX();
+        static MeshPX CreateScreenQuadPX();
 
+        // Sprite Quad 
+        static MeshPX CreateSpriteQuadPX(float with, float height);
     };
 }

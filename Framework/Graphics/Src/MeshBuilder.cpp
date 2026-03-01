@@ -657,9 +657,24 @@ MeshPX Engine3D::Graphics::MeshBuilder::CreateScreenQuadPX()
 {
     MeshPX mesh;
     mesh.vertices.push_back({ { -1.0f, -1.0f, 0.0f }, { 0.0f, 1.0f } });
-	mesh.vertices.push_back({ { -1.0f,  1.0f, 0.0f }, { 0.0f, 0.0f } });
-	mesh.vertices.push_back({  { 1.0f,  1.0f, 0.0f }, { 1.0f, 0.0f } });
-	mesh.vertices.push_back({ {  1.0f, -1.0f, 0.0f }, { 1.0f, 1.0f } });
+    mesh.vertices.push_back({ { -1.0f,  1.0f, 0.0f }, { 0.0f, 0.0f } });
+    mesh.vertices.push_back({  { 1.0f,  1.0f, 0.0f }, { 1.0f, 0.0f } });
+    mesh.vertices.push_back({ {  1.0f, -1.0f, 0.0f }, { 1.0f, 1.0f } });
     mesh.indices = { 0, 1, 2, 0, 2, 3 };
+    return mesh;
+}
+
+MeshPX MeshBuilder::CreateSpriteQuadPX(float with, float height)
+{
+    MeshPX mesh;
+    const float hw = with * 0.5f;
+    const float hh = height * 0.5f;
+
+    mesh.vertices.push_back({ { -hw, -hh, 0.0f }, { 0.0f, 1.0f } });
+    mesh.vertices.push_back({ { -hw,  hh, 0.0f }, { 0.0f, 0.0f } });
+    mesh.vertices.push_back({ {  hw,  hh, 0.0f }, { 1.0f, 0.0f } });
+    mesh.vertices.push_back({ {  hw, -hh, 0.0f }, { 1.0f, 1.0f } });
+    mesh.indices = { 0, 1, 2, 0, 2, 3 };
+
     return mesh;
 }
