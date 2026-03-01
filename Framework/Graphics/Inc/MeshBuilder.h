@@ -11,6 +11,7 @@ namespace Engine3D::Graphics
         static MeshPC CreateCubePC(float size, const Color& color);
         static MeshPC CreateCubePC(float size);
         static MeshPX CreateCubePX(float size);
+        static Mesh CreateCube(float size);
 
         //hw:Create the shapes and make if keyPressed switch between the shapes
         //pyramid

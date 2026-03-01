@@ -1,8 +1,10 @@
 #pragma once
 
+#include "PhysicsDebugDraw.h"
+
 namespace Engine3D::Physics
 {
-    class PhysocsObject;
+    class PhysicsObject;
     
     class PhysicsWorld final
     {
@@ -40,12 +42,22 @@ namespace Engine3D::Physics
         //bulllet objects
         btBroadphaseInterface* mInterface = nullptr;
         btCollisionDispatcher* mDispatcher = nullptr;
-        btDefaultCollisionConfiguration* mCollissionConfiguration = nullptr;
+        btDefaultCollisionConfiguration* mCollisionConfiguration = nullptr;
         btSequentialImpulseConstraintSolver* mSolver = nullptr;
         // this is the main physics world that runs the simulations
-        btDiscreteDynamicsWorld* mDynamicsWorld = nullptr;
+#ifdef USE_SOFT_BODY
+        friend class SoftBody;
+        btSoftRigidDynamicsWorld* mDynamicsWorld = nullptr;
+        btSoftRigidDynamicsWorld* GetSoftBodyWorld() { return mDynamicsWorld; }
 
+#else
+        btDiscreteDynamicsWorld* mDynamicsWorld = nullptr;
+        btSoftRigidDynamicsWorld* GetSoftBodyWorld() { return nullptr; }
+#endif
         using PhysicsObjects = std::vector<PhysicsObject*>;
         PhysicsObjects mPhysicsObjects;
+
+        PhysicsDebugDraw mPhysicsDebugDraw;
+        bool mDebugDraw = false;
     };
 }

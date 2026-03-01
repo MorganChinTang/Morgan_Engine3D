@@ -13,6 +13,15 @@ public:
 
 private:
 
+    struct BoxData
+    {
+        Engine3D::Graphics::RenderObject box;
+        Engine3D::Physics::CollisionShape shape;
+        Engine3D::Physics::RigidBody rigidBody;
+    };
+    using Boxes = std::vector<BoxData>;
+    Boxes mBoxes;
+
     void UpdateCamera(float deltaTime);
 
     Engine3D::Graphics::Camera mCamera;
@@ -27,4 +36,9 @@ private:
     Engine3D::Physics::RigidBody mGroundRigidBody;
 
     Engine3D::Graphics::StandardEffect mStandardEffect;
+
+    // cloth
+    Engine3D::Graphics::RenderObject mCloth;
+    Engine3D::Graphics::Mesh mClothMesh;
+    Engine3D::Physics::SoftBody mClothSoftBody;
 };

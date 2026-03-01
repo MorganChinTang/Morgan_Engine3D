@@ -11,13 +11,17 @@ RigidBody::~RigidBody()
     ASSERT(mRigidBody == nullptr, "RigidBody : terminate must be called");
 }
 
-void RigidBody::Initialize(Graphics::Transform& graphicsTransform, const CollisionShape& shape, float mass = 0.0f)
+void RigidBody::Initialize(Graphics::Transform& graphicsTransform, const CollisionShape& shape, float mass)
 {
     mGraphicsTransform = &graphicsTransform;
     mMass = mass;
 
+    // may nee to set to 0 if using a player 
+    btVector3 localInertia = btVector3();
+    shape.mCollisionShape->calculateLocalInertia(mass, localInertia);
+
     mMotionState = new btDefaultMotionState(ConvertTobtTransform(graphicsTransform));
-    mRigidBody = new btRigidBody(mMass, mMotionState, shape.mCollisionShape);
+    mRigidBody = new btRigidBody(mMass, mMotionState, shape.mCollisionShape, localInertia);
     PhysicsWorld::Get()->Register(this);
 }
 

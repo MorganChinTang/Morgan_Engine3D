@@ -130,6 +130,12 @@
     <ProjectReference Include="..\..\Engine\3DEngine\3DEngine.vcxproj">
       <Project>{81ce9db3-0180-45a2-afdb-859267529cad}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\External\Bullet\Bullet.vcxproj">
+      <Project>{516192eb-788a-4fe7-b2b7-2ef9ac036b12}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\Physics\Physics.vcxproj">
+      <Project>{481368f7-6bf4-4366-b58c-5afe345dca28}</Project>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameState.cpp" />
