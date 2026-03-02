@@ -12,6 +12,7 @@ namespace Engine3D::Graphics
         void Initialize(ModelId id);
         void PlayAnimation(int clipIndex, bool looping);
         void Update(float deltaTime);
+        void PlayEvents(float prevTime, float curTime);
 
         bool IsFinished() const;
         size_t GetAnimationCount() const;
@@ -22,5 +23,6 @@ namespace Engine3D::Graphics
         int mClipIndex = -1;
         float mAnimationTick = 0.0f;
         bool mIsLooping = false;
+        EventKeys mEventKeys;
     };
 }

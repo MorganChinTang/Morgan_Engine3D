@@ -10,6 +10,7 @@ namespace Engine3D::Graphics
         AnimationBuilder& AddPositionKey(const Math::Vector3& position, float time);
         AnimationBuilder& AddRotationKey(const Math::Quaternion& rotation, float time);
         AnimationBuilder& AddScaleKey(const Math::Vector3& scale, float time);
+        AnimationBuilder& AddEventKey(AnimationCallBack cb, float time);
 
         [[nodiscard]] Animation Build();
     private:

@@ -152,6 +152,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Framework\Audio\Audio.vcxproj">
+      <Project>{91be00e9-5a86-4fb5-b4ac-8771a7f42dca}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\Framework\Core\Core.vcxproj">
       <Project>{7f2cb4cc-00bd-4121-8f14-c4e1b398493d}</Project>
     </ProjectReference>
@@ -163,6 +166,9 @@
     </ProjectReference>
     <ProjectReference Include="..\..\Framework\Math\Math.vcxproj">
       <Project>{010a10ea-309a-4a40-8060-528235283023}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\Physics\Physics.vcxproj">
+      <Project>{481368f7-6bf4-4366-b58c-5afe345dca28}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

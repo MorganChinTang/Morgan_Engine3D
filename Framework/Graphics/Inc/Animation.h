@@ -10,6 +10,7 @@ namespace Engine3D::Graphics
     public:
         Transform GetTransform(float time) const;
         float GetDuration() const;
+        void PlayEvents(float prevTime, float curTime);
 
     private:
         Math::Vector3 GetPosition(float time) const;
@@ -22,6 +23,7 @@ namespace Engine3D::Graphics
         PositionKeys mPositionKeys;
         RotationKeys mRotationKeys;
         ScaleKeys mScaleKeys;
+        EventKeys mEventKeys;
         float mDuration = 0.0f;
     };
 }

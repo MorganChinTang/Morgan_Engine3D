@@ -7,6 +7,7 @@ using namespace Engine3D::Core;
 using namespace Engine3D::Graphics;
 using namespace Engine3D::Input;
 using namespace Engine3D::Physics;
+using namespace Engine3D::Audio;
 
 void App::Run(const AppConfig& config )
 {
@@ -30,6 +31,9 @@ void App::Run(const AppConfig& config )
 
     PhysicsWorld::Settings settings;
     PhysicsWorld::StaticInitialize(settings);
+    EventManager::StaticInitialize();
+    AudioSystem::StaticInitialize();
+    SoundEffectManager::StaticInitialize(L"../../Assets/Audio");
 
     //last step before running
     ASSERT(mCurrentState != nullptr, "App: Need an app state to run");
@@ -55,7 +59,7 @@ void App::Run(const AppConfig& config )
             mCurrentState = std::exchange(mNextState, nullptr);
             mCurrentState->Initialize();
         }
-
+        AudioSystem::Get()->Update();
         float deltaTime = TimeUtil::GetDeltaTime();
 #if defined(_DEBUG)
         if (deltaTime < 0.5f)
@@ -77,9 +81,11 @@ void App::Run(const AppConfig& config )
     //Terminate everything
     LOG("App Quit");
     mCurrentState->Terminate();
-    
+    SoundEffectManager::StaticTerminate();
+    AudioSystem::StaticTerminate();
+    EventManager::StaticTerminate();
     PhysicsWorld::StaticTerminate();
-	ModelManager::StaticTerminate();
+    ModelManager::StaticTerminate();
     TextureManager::StaticTerminate();                      
     SimpleDraw::StaticTerminate();
     DebugUI::StaticTerminate();
