@@ -92,16 +92,20 @@ void GameState::Terminate()
 }
 void GameState::Update(float deltaTime)
 {
-    SoundEffectManager* sm = SoundEffectManager::Get();
-    sm->Stop(mLaunchSoundId);
-    sm->Stop(mExplosionSoundId);
+	UpdateCamera(deltaTime);
+	mFireworkParticle.Update(deltaTime);
+    mParticleSystem.Update(deltaTime);
 
-    EventManager* em = EventManager::Get();
-    em->RemoveListener(PressSpaceEvent::StaticGetTypeId(), mSpacePressedListenerId);
-    em->RemoveListener(PressEnterEvent::StaticGetTypeId(), mEnterPressedListenerId);
-    mFireworkParticle.Terminate();
-    mParticleSystem.Terminate();
-    mParticleSystemEffect.Terminate();
+    float preyTime = mFireworkAnimationTime;
+    mFireworkAnimationTime += deltaTime;
+    if (mFireworkAnimation.GetDuration() > 0)
+    {
+        mFireworkAnimation.PlayEvents(preyTime, mFireworkAnimationTime);
+        while (mFireworkAnimationTime >= mFireworkAnimation.GetDuration())
+        {
+            mFireworkAnimationTime -= mFireworkAnimation.GetDuration();
+        }
+    }
 }
 void GameState::Render()
 {
@@ -112,8 +116,8 @@ void GameState::Render()
     mParticleSystem.SetPosition(particleTransform.position);
     mFireworkParticle.SetPosition(particleTransform.position);
     mParticleSystemEffect.Begin();
-    mParticleSystem.Render(mParticleSystemEffect);
-    mFireworkParticle.Render(mParticleSystemEffect);
+        mParticleSystem.Render(mParticleSystemEffect);
+        mFireworkParticle.Render(mParticleSystemEffect);
     mParticleSystemEffect.End();
 }
 
