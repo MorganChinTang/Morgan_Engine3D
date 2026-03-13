@@ -1,6 +1,10 @@
 -scale 0.01 ../../Assets/Models/Character01/Character01.fbx ../../Assets/Models/Character01/Character01.model
 -scale 0.01 ../../Assets/Models/Character02/Character02.fbx ../../Assets/Models/Character02/Character02.model
 -scale 0.01 ../../Assets/Models/Character03/Character03.fbx ../../Assets/Models/Character03/Character03.model
+-scale 0.50 ../../Assets/Models/Character04/Character04.fbx ../../Assets/Models/Character04/Character04.model
+-scale 0.001 ../../Assets/Models/Character05/Character05.fbx ../../Assets/Models/Character05/Character05.model
 
 //anim import command
--animOnly 1-scale 0.01 ../../Assets/Animations/Character01/SambaDancing.fbx ../../Assets/Animations/Character01/SambaDancing.fbx
+-animOnly 1 -scale 0.01 ../../Assets/Animations/Character01/SambaDancing.fbx ../../Assets/Animations/Character01/SambaDancing.fbx
+-animOnly 1 -scale 0.01 ../../Assets/Animations/Character04/Talking04.fbx ../../Assets/Animations/Character04/Talking04.fbx
+-animOnly 1 -scale 0.001 ../../Assets/Animations/Character05/Talking05.fbx ../../Assets/Animations/Character05/Talking05.fbx

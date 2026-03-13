@@ -103,6 +103,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "19_HelloEventsAndAudio", "V
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "20_ProceduralAnimation", "VGP334\20_ProceduralAnimation\20_ProceduralAnimation.vcxproj", "{609F32DB-A856-400D-8AA1-EFCD193975C2}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "00_FinalAnimation", "VGP334\00_FinalAnimation\00_FinalAnimation.vcxproj", "{CBAE33BA-F385-4E84-9E66-826B143B38CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -383,6 +385,14 @@ Global
 		{609F32DB-A856-400D-8AA1-EFCD193975C2}.Release|x64.Build.0 = Release|x64
 		{609F32DB-A856-400D-8AA1-EFCD193975C2}.Release|x86.ActiveCfg = Release|Win32
 		{609F32DB-A856-400D-8AA1-EFCD193975C2}.Release|x86.Build.0 = Release|Win32
+		{CBAE33BA-F385-4E84-9E66-826B143B38CC}.Debug|x64.ActiveCfg = Debug|x64
+		{CBAE33BA-F385-4E84-9E66-826B143B38CC}.Debug|x64.Build.0 = Debug|x64
+		{CBAE33BA-F385-4E84-9E66-826B143B38CC}.Debug|x86.ActiveCfg = Debug|Win32
+		{CBAE33BA-F385-4E84-9E66-826B143B38CC}.Debug|x86.Build.0 = Debug|Win32
+		{CBAE33BA-F385-4E84-9E66-826B143B38CC}.Release|x64.ActiveCfg = Release|x64
+		{CBAE33BA-F385-4E84-9E66-826B143B38CC}.Release|x64.Build.0 = Release|x64
+		{CBAE33BA-F385-4E84-9E66-826B143B38CC}.Release|x86.ActiveCfg = Release|Win32
+		{CBAE33BA-F385-4E84-9E66-826B143B38CC}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -423,6 +433,7 @@ Global
 		{91BE00E9-5A86-4FB5-B4AC-8771A7F42DCA} = {6CD879E0-67E9-4B40-B7DA-346056727AC1}
 		{13E00557-4047-418D-9381-9105DB5F87CE} = {83EE5C27-CE0F-4481-BC1D-F0E8A3C2F4C2}
 		{609F32DB-A856-400D-8AA1-EFCD193975C2} = {83EE5C27-CE0F-4481-BC1D-F0E8A3C2F4C2}
+		{CBAE33BA-F385-4E84-9E66-826B143B38CC} = {83EE5C27-CE0F-4481-BC1D-F0E8A3C2F4C2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3FD362C1-9DCF-4C30-BA1C-7C60EAFBEABC}
