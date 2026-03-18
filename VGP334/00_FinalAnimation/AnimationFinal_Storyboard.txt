@@ -1,0 +1,55 @@
+timestamp (story board?)
+17 (0)
+- C4 give bomb C5 (Camera Both)
+- particle start on the bomb
+
+19 (2)
+- C4 walk off camera
+- C5 holding the bomb
+
+23(6)- C4 walks back and take the bomb back
+24(7)- particle ends
+
+next scene
+25(8) - C4 holding salad (Camera Both) (C5 off camera)
+26(9) - C5 Barges in and push C4
+27(10)
+- C5 punches the salad on a table (Camera Both)
+- C4 asking him to stop
+
+next scene
+30(13)- Show C4 angry at C5 (Camera both)
+31(14)- camera look at C4 taking angrily (Camera C4)
+33(15)- C4 launches like a rocket angrily(Camera both far)
+34.5(16.5)- C5 just smiled (Camera C5)
+
+next scene
+35(17)- C4 holding a gun to self (can sub for smt that is suicidal) (camera C4)
+37(18)- Earth taking happy (Camera Earth)
+38(19)- Earth talking unhappy
+
+next scene
+41(24)- C4 looking at C5 talking (Camera Both)
+44(27)- C5 punches C4, C4 gets punched (Camera C4)
+45(28)- Camera look at C5, C5 talks evilly (Camera C5)
+
+next scene 
+46(29)
+- C5 punches the salad (Camera Both)
+- C4 asking him to stop
+49(32)
+-C5 punching the salad (Camera C5)
+51(34) same as 46(29
+- C5 punches the salad (Camera Both)
+- C4 asking him to stop
+
+next scene
+51(35) - cactus on the left C4 and C5 tiny on the right (Camera Both)
+52(36)- C4 Taking (Camera C4)
+55(39)- tiny C5 rotate and fly onto the cactus(Camera Both)
+56(40)- C4 taking menacingly on the right (T pose) (Camera C4)
+59(43)- C4 talking on the left (Camera C4)
+60(44)- tiny C5 burning hapily (buring particle) (Camera C5)
+61(45)- C4 Going bonkers, C6 if i have time (Camera C4)
+
+Animation needed

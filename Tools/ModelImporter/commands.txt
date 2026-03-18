@@ -1,10 +1,44 @@
 -scale 0.01 ../../Assets/Models/Character01/Character01.fbx ../../Assets/Models/Character01/Character01.model
 -scale 0.01 ../../Assets/Models/Character02/Character02.fbx ../../Assets/Models/Character02/Character02.model
 -scale 0.01 ../../Assets/Models/Character03/Character03.fbx ../../Assets/Models/Character03/Character03.model
--scale 0.50 ../../Assets/Models/Character04/Character04.fbx ../../Assets/Models/Character04/Character04.model
+-scale 0.23 ../../Assets/Models/Character04/Character04.fbx ../../Assets/Models/Character04/Character04.model
 -scale 0.001 ../../Assets/Models/Character05/Character05.fbx ../../Assets/Models/Character05/Character05.model
+-scale 0.01 ../../Assets/Models/Character06/Character06.fbx ../../Assets/Models/Character06/Character06.model
 
 //anim import command
+//Other
 -animOnly 1 -scale 0.01 ../../Assets/Animations/Character01/SambaDancing.fbx ../../Assets/Animations/Character01/SambaDancing.fbx
--animOnly 1 -scale 0.01 ../../Assets/Animations/Character04/Talking04.fbx ../../Assets/Animations/Character04/Talking04.fbx
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+//Character 4
+-animOnly 1 -scale 0.23 ../../Assets/Animations/Character04/Talking04.fbx ../../Assets/Animations/Character04/Talking04.fbx
+
+-animOnly 1 -scale 0.23 ../../Assets/Animations/Character04/C4Angry.fbx ../../Assets/Animations/Character04/C4Angry.fbx
+-animOnly 1 -scale 0.23 ../../Assets/Animations/Character04/C4GettingPunched.fbx ../../Assets/Animations/Character04/C4GettingPunched.fbx
+-animOnly 1 -scale 0.23 ../../Assets/Animations/Character04/C4GivingSmt.fbx ../../Assets/Animations/Character04/C4GivingSmt.fbx
+-animOnly 1 -scale 0.23 ../../Assets/Animations/Character04/C4GoCrazy.fbx ../../Assets/Animations/Character04/C4GoCrazy.fbx
+-animOnly 1 -scale 0.23 ../../Assets/Animations/Character04/C4HoldingSalad.fbx ../../Assets/Animations/Character04/C4HoldingSalad.fbx
+-animOnly 1 -scale 0.23 ../../Assets/Animations/Character04/C4Idle.fbx ../../Assets/Animations/Character04/C4Idle.fbx
+-animOnly 1 -scale 0.23 ../../Assets/Animations/Character04/C4LookingStressed.fbx ../../Assets/Animations/Character04/C4LookingStressed.fbx
+-animOnly 1 -scale 0.23 ../../Assets/Animations/Character04/C4TakingSmt.fbx ../../Assets/Animations/Character04/C4TakingSmt.fbx
+-animOnly 1 -scale 0.23 ../../Assets/Animations/Character04/C4Talking.fbx ../../Assets/Animations/Character04/C4Talking.fbx
+-animOnly 1 -scale 0.23 ../../Assets/Animations/Character04/C4TPose.fbx ../../Assets/Animations/Character04/C4TPose.fbx
+-animOnly 1 -scale 0.23 ../../Assets/Animations/Character04/C4Walking.fbx ../../Assets/Animations/Character04/C4Walking.fbx
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+//Character 5
 -animOnly 1 -scale 0.001 ../../Assets/Animations/Character05/Talking05.fbx ../../Assets/Animations/Character05/Talking05.fbx
+
+-animOnly 1 -scale 0.001 ../../Assets/Animations/Character05/C5HoldingSmt.fbx ../../Assets/Animations/Character05/C5HoldingSmt.fbx
+-animOnly 1 -scale 0.001 ../../Assets/Animations/Character05/C5NeutralIdle.fbx ../../Assets/Animations/Character05/C5NeutralIdle.fbx
+-animOnly 1 -scale 0.001 ../../Assets/Animations/Character05/C5OnTheFloor.fbx ../../Assets/Animations/Character05/C5OnTheFloor.fbx
+-animOnly 1 -scale 0.001 ../../Assets/Animations/Character05/C5PunchingSmt.fbx ../../Assets/Animations/Character05/C5PunchingSmt.fbx
+-animOnly 1 -scale 0.001 ../../Assets/Animations/Character05/C5Talking.fbx ../../Assets/Animations/Character05/C5Talking.fbx
+-animOnly 1 -scale 0.001 ../../Assets/Animations/Character05/C5TalkingEvil.fbx ../../Assets/Animations/Character05/C5TalkingEvil.fbx
+-animOnly 1 -scale 0.001 ../../Assets/Animations/Character05/C5Walking.fbx ../../Assets/Animations/Character05/C5Walking.fbx
+
+
+//Character 6
+-animOnly 1 -scale 0.01 ../../Assets/Animations/Character06/C6Crazy.fbx ../../Assets/Animations/Character06/C6Crazy.fbx
