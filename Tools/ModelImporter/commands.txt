@@ -5,6 +5,13 @@
 -scale 0.001 ../../Assets/Models/Character05/Character05.fbx ../../Assets/Models/Character05/Character05.model
 -scale 0.01 ../../Assets/Models/Character06/Character06.fbx ../../Assets/Models/Character06/Character06.model
 
+// props
+-scale 1.00 ../../Assets/Models/cactus.fbx ../../Assets/Models/cactus.model
+-scale 0.01 ../../Assets/Models/bomb.fbx ../../Assets/Models/bomb.model
+-scale 0.01 ../../Assets/Models/bomb2.fbx ../../Assets/Models/bomb2.model
+-scale 1.00 ../../Assets/Models/salad.fbx ../../Assets/Models/salad.model
+
+
 //anim import command
 //Other
 -animOnly 1 -scale 0.01 ../../Assets/Animations/Character01/SambaDancing.fbx ../../Assets/Animations/Character01/SambaDancing.fbx

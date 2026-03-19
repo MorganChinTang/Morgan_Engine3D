@@ -1,0 +1,55 @@
+Animation needed
+ 	C4GiveSmt 1
+ 	C5HoldingSmt 1
+ 	C4Walking 1
+ 	C4TakingSmt 1
+ 	C4HoldingSalad 2
+ 	C5Walking 2
+ 	C5PunchingSmt 2 5 6
+ 	C4LookingStressed 2 4 6
+ 	C4Angry 3
+ 	C5NeutralIdle 3 7
+ 	C4TPose 3
+ 	C4Idle 5 7
+ 	C5Talking 5
+ 	C4GettingPunched 5
+ 	C5TalkingEvil 5 7
+ 	C4Talking 7 8
+ 	C5OnTheFloor 8
+	C6Crazy 8
+
+
+CameraPosition: (1.1, 1.87, -2.14)
+CameraRotation: (25.2, 42.5, 0)
+
+Character4Position:(0,0,0)
+Character4Rotation: (0,-77,0)
+Character4Scale: 1
+Character4AminIndex: 0
+
+Character5Position: (1,0,-0.1)
+Character5Rotation:(0, 60,0)
+Character5Scale: 0.5
+Character5AminIndex: 2
+
+Character6Position: (3.1,0,-0.7)
+Character6Rotation: (0,71,0)
+Character6Scale: 1
+Character6AminIndex: 0
+
+bombPosition: 
+bombRotation: 
+bombScale: -0.001
+
+saladPosition:
+saladRotation: 
+saladScale: -0.001
+
+cactusPosition: 
+cactusRotation: 
+cactusScale:  -0.001
+
+earthPosition: 
+earthRotation: 
+earthScale: -0.001
+

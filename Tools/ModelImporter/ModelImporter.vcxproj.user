@@ -2,6 +2,6 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
-    <LocalDebuggerCommandArguments>-animOnly 1 -scale 0.01 ../../Assets/Animations/Character06/C6Crazy.fbx ../../Assets/Animations/Character06/C6Crazy.fbx</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>-scale 1.00 ../../Assets/Models/salad.fbx ../../Assets/Models/salad.model</LocalDebuggerCommandArguments>
   </PropertyGroup>
 </Project>
