@@ -98,6 +98,7 @@ private:
 
     bool mSequencePlaying = false;
     float mSceneTimer = 0.0f;
+    float mPlaybackTimer = 0.0f;
     float mSequenceSpeed = 1.0f;
     int mCurrentSceneIndex = 0;
 

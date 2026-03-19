@@ -168,6 +168,7 @@ void GameState::Initialize()
     ApplyScene(0);
     mSequencePlaying = false;
     mSceneTimer = 0.0f;
+    mPlaybackTimer = 0.0f;
     mSequenceSpeed = 1.0f;
 
     EventManager* em = EventManager::Get();
@@ -399,6 +400,7 @@ void GameState::Update(float deltaTime)
     {
         const float sequenceDeltaTime = deltaTime * mSequenceSpeed;
         mSceneTimer += sequenceDeltaTime;
+        mPlaybackTimer = mSceneTimer;
         int nextScene = mCurrentSceneIndex;
         for (int i = 0; i < kSceneCount; ++i)
         {
@@ -417,6 +419,7 @@ void GameState::Update(float deltaTime)
         if (mSceneTimer >= mScenes[kSceneCount - 1].endTime)
         {
             mSequencePlaying = false;
+            mPlaybackTimer = mScenes[kSceneCount - 1].endTime;
             mSceneTimer = 0.0f;
         }
     }
@@ -957,8 +960,21 @@ void GameState::Render()
 
 void GameState::DebugUI()
 {
-    ImGui::SetNextWindowCollapsed(true, ImGuiCond_FirstUseEver);
+    //ImGui::SetNextWindowCollapsed(false, ImGuiCond_FirstUseEver);
     ImGui::Begin("Debug", nullptr, ImGuiWindowFlags_AlwaysAutoResize);
+
+    const float totalDuration = mScenes[kSceneCount - 1].endTime;
+    const float clampedTime = Math::Clamp(mPlaybackTimer, 0.0f, totalDuration);
+    ImGui::Text("Timer");
+    ImGui::Text("Playback: %.2f / %.2f", clampedTime, totalDuration);
+    ImGui::Text("Status: %s", mSequencePlaying ? "Playing" : "Stopped");
+    ImGui::Text("Scene Index: %d", mCurrentSceneIndex);
+    ImGui::ProgressBar(clampedTime / totalDuration, ImVec2(220.0f, 0.0f));
+    ImGui::Separator();
+
+    ImGui::SetNextItemOpen(false, ImGuiCond_FirstUseEver);
+    if (ImGui::CollapsingHeader("DebugDebug"))
+    {
     if (ImGui::CollapsingHeader("Camera", ImGuiTreeNodeFlags_DefaultOpen))
     {
         const Math::Vector3& cameraPosition = mCamera.GetPosition();
@@ -1049,6 +1065,8 @@ void GameState::DebugUI()
     if (ImGui::DragInt("AnimIndex6", &mClipIndex6, 1, -1, maxAnimations6 - 1))
     {
         mAnimator6.PlayAnimation(mClipIndex6, true);
+    }
+
     }
 
     // mStandardEffect.DebugUI();
@@ -1348,6 +1366,7 @@ void GameState::OnPlaySequenceEvent(const Engine3D::Core::Event& e)
 {
     mSequencePlaying = true;
     mSceneTimer = 0.0f;
+    mPlaybackTimer = mSceneTimer;
     ApplyScene(0);
 }
 
@@ -1356,6 +1375,7 @@ void GameState::OnSceneSelectedEvent(const Engine3D::Core::Event& e)
     const SceneSelectedEvent& sceneEvent = static_cast<const SceneSelectedEvent&>(e);
     mSequencePlaying = true;
     mSceneTimer = mScenes[sceneEvent.sceneIndex].startTime;
+    mPlaybackTimer = mSceneTimer;
     ApplyScene(sceneEvent.sceneIndex);
 }
 
