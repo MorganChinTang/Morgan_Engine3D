@@ -6,6 +6,19 @@
 #include "App.h"
 #include "AppState.h"
 
+// game object info
+#include "GameObject.h"
+#include "GameWorld.h"
+#include "GameObjectHandle.h"
+
+// components
+#include "Component.h"
+#include "TransformComponent.h"
+#include "CameraComponent.h"
+#include "FPSCameraComponent.h"
+
+//Services
+#include "Service.h"
 namespace Engine3D
 {
     App& MainApp();
