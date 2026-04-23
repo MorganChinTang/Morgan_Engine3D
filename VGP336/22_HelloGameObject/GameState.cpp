@@ -15,11 +15,31 @@ void GameState::Initialize()
     mCameraComponent = cameraGO->AddComponent<CameraComponent>();
     cameraGO->AddComponent<FPSCameraComponent>();
     cameraGO->Initialize();
-
+    
     GameObject* playerGO = mGameWorld.CreateGameObject("Player");
     TransformComponent* playerTransform= playerGO->AddComponent<TransformComponent>();
     playerTransform->position.x = 2.0f;
     playerGO->Initialize();
+
+    GameObject* planeGO = mGameWorld.CreateGameObject("Plane");
+    TransformComponent* planeTransform = planeGO->AddComponent<TransformComponent>();
+    planeTransform->position.x = 3.0f;
+    planeGO->Initialize();
+
+    GameObject* player2GO = mGameWorld.CreateGameObject("Player2");
+    TransformComponent* player2Transform = player2GO->AddComponent<TransformComponent>();
+    player2Transform->position.x = 4.0f;
+    player2GO->Initialize();
+
+    GameObject* ballGO = mGameWorld.CreateGameObject("Ball");
+    TransformComponent* ballTransform = ballGO->AddComponent<TransformComponent>();
+    ballTransform->position.x = 5.0f;
+    ballGO->Initialize();
+
+    GameObject* dogGO = mGameWorld.CreateGameObject("Dog");
+    TransformComponent* dogTransform = dogGO->AddComponent<TransformComponent>();
+    dogTransform->position.x = 5.0f;
+    dogGO->Initialize();
 }
 void GameState::Terminate()
 {
