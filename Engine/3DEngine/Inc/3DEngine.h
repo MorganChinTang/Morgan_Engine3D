@@ -5,11 +5,13 @@
 //sort header files in alphabetical order
 #include "App.h"
 #include "AppState.h"
+#include "SaveUtil.h"
 
 // game object info
 #include "GameObject.h"
 #include "GameWorld.h"
 #include "GameObjectHandle.h"
+#include "GameObjectFactory.h"
 
 // components
 #include "Component.h"
@@ -19,6 +21,8 @@
 
 //Services
 #include "Service.h"
+
+
 namespace Engine3D
 {
     App& MainApp();
