@@ -72,6 +72,9 @@
     <ClInclude Include="Inc\RenderObjectComponent.h">
       <Filter>Inc\Components</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\RenderService.h">
+      <Filter>Inc\Services</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Precompiled.cpp">
@@ -109,6 +112,9 @@
     </ClCompile>
     <ClCompile Include="Src\RenderObjectComponent.cpp">
       <Filter>Src\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\RenderService.cpp">
+      <Filter>Inc\Services</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
