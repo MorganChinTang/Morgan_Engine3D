@@ -8,6 +8,9 @@ namespace Engine3D
         Transform,
         Camera,
         FPSCamera,
+        Mesh,
+        Model,
+        Animator,
         Count       // last value, can be used to chain custom component
 
     };
@@ -16,6 +19,7 @@ namespace Engine3D
     {
         Invalid,
         Camera,
+        Render,
         Count
     };
 }
