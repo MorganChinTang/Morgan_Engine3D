@@ -136,6 +136,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Inc\3DEngine.h" />
+    <ClInclude Include="Inc\AnimatorComponent.h" />
     <ClInclude Include="Inc\App.h" />
     <ClInclude Include="Inc\AppState.h" />
     <ClInclude Include="Inc\CameraComponent.h" />
@@ -147,6 +148,9 @@
     <ClInclude Include="Inc\GameObjectFactory.h" />
     <ClInclude Include="Inc\GameObjectHandle.h" />
     <ClInclude Include="Inc\GameWorld.h" />
+    <ClInclude Include="Inc\MeshComponent.h" />
+    <ClInclude Include="Inc\ModelComponent.h" />
+    <ClInclude Include="Inc\PhysicsService.h" />
     <ClInclude Include="Inc\RenderObjectComponent.h" />
     <ClInclude Include="Inc\RenderService.h" />
     <ClInclude Include="Inc\SaveUtil.h" />

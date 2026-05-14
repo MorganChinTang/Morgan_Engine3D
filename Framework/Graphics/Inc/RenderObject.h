@@ -9,33 +9,34 @@
 
 namespace Engine3D::Graphics
 {
-	struct Skeleton;
+    struct Skeleton;
 
-	class RenderObject
-	{
-	public:
-		void Terminate();
+    class RenderObject
+    {
+    public:
+        void Terminate();
 
-		Transform transform;
-		MeshBuffer meshBuffer;
-		Material material;
-		TextureId diffuseMapId;
-		TextureId specMapId;
-		TextureId normalMapId;
-		TextureId bumpMapId;
+        Transform transform;
+        MeshBuffer meshBuffer;
+        Material material;
+        TextureId diffuseMapId;
+        TextureId specMapId;
+        TextureId normalMapId;
+        TextureId bumpMapId;
 
-	};
-	class RenderGroup
-	{
-	public:
-		void Initialize(const std::filesystem::path& modelFilePath);
-		void Terminate();
+    };
+    class RenderGroup
+    {
+    public:
+        void Initialize(const std::filesystem::path& modelFilePath, const Animator* anim = nullptr);
+        void Initialize(const Model& model, const Animator* anim = nullptr);
+        void Terminate();
 
-		ModelId modelId;
-		Transform transform;
-		std::vector<RenderObject> renderObjects;
+        ModelId modelId;
+        Transform transform;
+        std::vector<RenderObject> renderObjects;
 
-		const Skeleton* skeleton = nullptr;
-		const Animator* animator = nullptr;
-	};
+        const Skeleton* skeleton = nullptr;
+        const Animator* animator = nullptr;
+    };
 }

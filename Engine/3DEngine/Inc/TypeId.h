@@ -11,6 +11,7 @@ namespace Engine3D
         Mesh,
         Model,
         Animator,
+        RigidBody,
         Count       // last value, can be used to chain custom component
 
     };
@@ -20,6 +21,7 @@ namespace Engine3D
         Invalid,
         Camera,
         Render,
+        Physics,
         Count
     };
 }

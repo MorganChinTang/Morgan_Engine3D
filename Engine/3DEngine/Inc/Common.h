@@ -1,7 +1,7 @@
 #pragma once
 
 //include external libraries
-#include<Core/Inc/Core.h>
+#include <Core/Inc/Core.h>
 #include <Math/Inc/DWMath.h>
 #include <Graphics/Inc/Graphics.h>
 #include <Input/Inc/Input.h>
@@ -14,3 +14,5 @@
 #include "rapidjson/filewritestream.h"
 #include "rapidjson/writer.h"
 #include "rapidjson/prettywriter.h"
+
+#define USE_PHYSICS_SERVICE

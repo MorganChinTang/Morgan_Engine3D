@@ -5,6 +5,7 @@
 #include "RenderObjectComponent.h"
 #include "TransformComponent.h"
 #include "GameWorld.h"
+#include "AnimatorComponent.h"
 
 using namespace Engine3D;
 
@@ -84,15 +85,20 @@ void RenderService::Register(const RenderObjectComponent* renderObjectComponent)
         {
             return entry.renderComponent == renderObjectComponent;
         });
-    if(iter == mRenderEntries.end())
+    if (iter == mRenderEntries.end())
     {
-        Entry&entry = mRenderEntries.emplace_back();
+        const Graphics::Animator* animator = nullptr;
+        const AnimatorComponent* animatorComponent = renderObjectComponent->GetOwner().GetComponent<AnimatorComponent>();
+        if (animatorComponent != nullptr)
+        {
+            animator = &animatorComponent->GetAnimator();
+        }
+        Entry& entry = mRenderEntries.emplace_back();
         entry.renderComponent = renderObjectComponent;
-        entry.transformComponent= renderObjectComponent->GetOwner().GetComponent<TransformComponent>();
-        entry.renderGroup.Initialize(renderObjectComponent->GetModel());
+        entry.transformComponent = renderObjectComponent->GetOwner().GetComponent<TransformComponent>();
+        entry.renderGroup.Initialize(renderObjectComponent->GetModel(), animator);
         entry.renderGroup.modelId = renderObjectComponent->GetModelId();
     }
-    
 }
 void RenderService::Unregister(const RenderObjectComponent* renderObjectComponent)
 {

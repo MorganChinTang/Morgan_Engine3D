@@ -1,5 +1,7 @@
 #pragma once
+
 #include "Service.h"
+
 namespace Engine3D
 {
     class CameraComponent;

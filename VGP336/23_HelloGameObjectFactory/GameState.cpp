@@ -1,4 +1,5 @@
 #include "GameState.h"
+#include "math.h"
 
 using namespace Engine3D;
 using namespace Engine3D::Graphics;
@@ -6,7 +7,9 @@ using namespace Engine3D::Input;
 using namespace Engine3D::Physics;
 void GameState::Initialize()
 {
-    mGameWorld.AddService<CameraService>;
+    mGameWorld.AddService<CameraService>();
+    mGameWorld.AddService<RenderService>();
+    mGameWorld.AddService<PhysicsService>();
     mGameWorld.Initialize();
     GameObject* transformGO = mGameWorld.CreateGameObject("Transform", "L../../Assets/Templates/Objects/transform_obj.json");
     transformGO->AddComponent<TransformComponent>();
