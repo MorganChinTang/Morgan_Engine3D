@@ -14,15 +14,17 @@ namespace Engine3D
         void Render();
         void DebugUI();
 
+        GameObject* CreateGameObject(std::string name);
         GameObject* CreateGameObject(std::string name, const std::filesystem::path& templatePath = "");
         void DestroyGameObject(const GameObjectHandle& handle);
 
         template<class ServiceType>
         ServiceType* AddService()
         {
-            static_assert(std::is_base_of_v<Service, ServiceType>, "ServiceType must be a subclass of Service");
-            ASSERT(!mInitialized, "Services can only be added before the world is initialized");
-            
+            static_assert(std::is_base_of_v<Service, ServiceType>,
+                "GameWorld: service type must be of type Service");
+            ASSERT(!mInitialized, "GameWorld: can't add services after initialized");
+
             auto& newService = mServices.emplace_back(std::make_unique<ServiceType>());
             newService->mWorld = this;
             return static_cast<ServiceType*>(newService.get());
@@ -32,13 +34,14 @@ namespace Engine3D
         {
             for (auto& service : mServices)
             {
-                if(service->GetTypeId() == ServiceType::GetStaticTypeId())
+                if (service->GetTypeId() == ServiceType::StaticGetTypeId())
                 {
                     return static_cast<ServiceType*>(service.get());
                 }
-                return nullptr;
             }
+            return nullptr;
         }
+
         template<class ServiceType>
         ServiceType* GetService()
         {
@@ -62,7 +65,7 @@ namespace Engine3D
         std::vector<uint32_t> mToBeDestroyed;
         bool mInitialized = false;
 
-        using Services = std::vector<std::unique_ptr <Service >>;
+        using Services = std::vector<std::unique_ptr<Service>>;
         Services mServices;
     };
 }

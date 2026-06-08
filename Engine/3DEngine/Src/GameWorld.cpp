@@ -6,8 +6,7 @@ using namespace Engine3D;
 
 void GameWorld::Initialize(uint32_t capacity)
 {
-    ASSERT(!mInitialized, "GameWorld: already initialized");
-
+    ASSERT(!mInitialized, "GameWorld: is already initialized");
     for (auto& service : mServices)
     {
         service->Initialize();
@@ -16,10 +15,10 @@ void GameWorld::Initialize(uint32_t capacity)
     mGameObjectSlots.resize(capacity);
     mFreeSlots.resize(capacity);
     std::iota(mFreeSlots.begin(), mFreeSlots.end(), 0);
+
     mInitialized = true;
-
-
 }
+
 void GameWorld::Terminate()
 {
     for (Slot& slot : mGameObjectSlots)
@@ -34,7 +33,7 @@ void GameWorld::Terminate()
     mFreeSlots.clear();
     mToBeDestroyed.clear();
 
-    for(auto& service : mServices)
+    for (auto& service : mServices)
     {
         service->Terminate();
         service.reset();
@@ -43,6 +42,7 @@ void GameWorld::Terminate()
 
     mInitialized = false;
 }
+
 void GameWorld::Update(float deltaTime)
 {
     for (Slot& slot : mGameObjectSlots)
@@ -57,15 +57,18 @@ void GameWorld::Update(float deltaTime)
     {
         service->Update(deltaTime);
     }
+
     ProcessDestroyList();
 }
+
 void GameWorld::Render()
 {
-    for(auto& Service : mServices)
+    for (auto& service : mServices)
     {
-        Service->Render();
+        service->Render();
     }
 }
+
 void GameWorld::DebugUI()
 {
     for (Slot& slot : mGameObjectSlots)
@@ -75,7 +78,7 @@ void GameWorld::DebugUI()
             slot.gameObject->DebugUI();
         }
     }
-    for(auto& service : mServices)
+    for (auto& service : mServices)
     {
         service->DebugUI();
     }
@@ -83,10 +86,10 @@ void GameWorld::DebugUI()
 
 GameObject* GameWorld::CreateGameObject(std::string name, const std::filesystem::path& templatePath)
 {
-    ASSERT(mInitialized, "GameWorld: not initialized");
+    ASSERT(mInitialized, "GameWorld: is not initialized");
     if (mFreeSlots.empty())
     {
-        ASSERT(false, "GameWorld: no free slots");
+        ASSERT(false, "GameWorld: no more free slots");
         return nullptr;
     }
 
@@ -107,13 +110,14 @@ GameObject* GameWorld::CreateGameObject(std::string name, const std::filesystem:
 
     return slot.gameObject.get();
 }
+
 void GameWorld::DestroyGameObject(const GameObjectHandle& handle)
 {
     if (!IsValid(handle))
     {
         return;
     }
-    
+
     Slot& slot = mGameObjectSlots[handle.mIndex];
     slot.generation++;
     mToBeDestroyed.push_back(handle.mIndex);
@@ -125,12 +129,13 @@ bool GameWorld::IsValid(const GameObjectHandle& handle)
     {
         return false;
     }
-    if(mGameObjectSlots[handle.mIndex].generation != handle.mGeneration)
+    if (mGameObjectSlots[handle.mIndex].generation != handle.mGeneration)
     {
         return false;
     }
     return true;
 }
+
 void GameWorld::ProcessDestroyList()
 {
     for (uint32_t index : mToBeDestroyed)

@@ -9,32 +9,46 @@ using namespace Engine3D;
 
 void CameraComponent::Initialize()
 {
-    CameraService* cameraService = GetOwner().GetWorld().GetService<CameraService>();
-    if(cameraService != nullptr)
-    {
-        cameraService->Register(*this);
-    }
-}
-void CameraComponent::Terminate()
-{
+
     CameraService* cameraService = GetOwner().GetWorld().GetService<CameraService>();
     if (cameraService != nullptr)
     {
-        cameraService->Unregister(*this);
+        cameraService->Register(this);
     }
 }
+
+void CameraComponent::Terminate()
+{
+
+    CameraService* cameraService = GetOwner().GetWorld().GetService<CameraService>();
+    if (cameraService != nullptr)
+    {
+        cameraService->Unregister(this);
+    }
+}
+
 void CameraComponent::DebugUI()
 {
     Math::Vector3 pos = mCamera.GetPosition();
     Math::Vector3 dir = mCamera.GetDirection();
-    if(ImGui::DragFloat3("Position##Camera", &pos.x, 0.1f))
+    if(ImGui::DragFloat3("Position#Camera", &pos.x, 0.1f))
     {
         mCamera.SetPosition(pos);
     }
-    if (ImGui::DragFloat3("Direction##Camera", &dir.x, 0.1f))
+    if(ImGui::DragFloat3("Direction#Camera", &dir.x, 0.1f))
     {
         mCamera.SetDirection(dir);
     }
+}
+
+Graphics::Camera& CameraComponent::GetCamera()
+{
+    return mCamera;
+}
+
+const Graphics::Camera& CameraComponent::GetCamera() const
+{
+    return mCamera;
 }
 
 void CameraComponent::Deserialize(const rapidjson::Value& value)
@@ -52,13 +66,4 @@ void CameraComponent::Deserialize(const rapidjson::Value& value)
     {
         mCamera.SetDirection(readValue);
     }
-}
-
-Graphics::Camera& CameraComponent::GetCamera()
-{
-    return mCamera;
-}
-const Graphics::Camera& CameraComponent::GetCamera() const
-{
-    return mCamera;
 }

@@ -16,6 +16,9 @@
     <Filter Include="Inc\Services">
       <UniqueIdentifier>{de07541a-376c-485f-860a-87830c9017fa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Services">
+      <UniqueIdentifier>{95ba4829-5dab-4aef-8994-c4572d8572c8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Inc\3DEngine.h">
@@ -87,6 +90,9 @@
     <ClInclude Include="Inc\PhysicsService.h">
       <Filter>Inc\Services</Filter>
     </ClInclude>
+    <ClInclude Include="Inc\RigidBodyComponent.h">
+      <Filter>Inc\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Precompiled.cpp">
@@ -119,14 +125,29 @@
     <ClCompile Include="Src\SaveUtil.cpp">
       <Filter>Src</Filter>
     </ClCompile>
-    <ClCompile Include="Src\CameraService.cpp">
-      <Filter>Inc\Services</Filter>
-    </ClCompile>
     <ClCompile Include="Src\RenderObjectComponent.cpp">
       <Filter>Src\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Src\AnimatorComponent.cpp">
+      <Filter>Src\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\MeshComponent.cpp">
+      <Filter>Src\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\ModelComponent.cpp">
+      <Filter>Src\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\CameraService.cpp">
+      <Filter>Src\Services</Filter>
+    </ClCompile>
     <ClCompile Include="Src\RenderService.cpp">
-      <Filter>Inc\Services</Filter>
+      <Filter>Src\Services</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\PhysicsService.cpp">
+      <Filter>Src\Services</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\RigidBodyComponent.cpp">
+      <Filter>Src\Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

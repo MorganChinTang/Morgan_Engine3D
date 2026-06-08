@@ -124,7 +124,7 @@ bool SaveUtil::ReadString(const char* key, std::string& str, const rapidjson::Va
 void SaveUtil::WriteString(const char* key, const char* str, rapidjson::Document& doc, rapidjson::Value& member)
 {
     rapidjson::GenericStringRef<char> keyStr(key);
-    rapidjson::GenericStringRef<char> valueStr(key);
+    rapidjson::GenericStringRef<char> valueStr(str);
     member.AddMember(keyStr, valueStr, doc.GetAllocator());
 }
 bool SaveUtil::ReadStringArray(const char* key, std::vector<std::string>& strArray, const rapidjson::Value& value)
@@ -147,7 +147,7 @@ void SaveUtil::WriteStringArray(const char* key, const std::vector<std::string>&
     for (const auto& str : strArray)
     {
         rapidjson::GenericStringRef<char>valueStr(str.c_str());
-        valueArray.PushBack(str, doc.GetAllocator());
+        valueArray.PushBack(valueStr, doc.GetAllocator());
     }
     member.AddMember(keyStr, valueArray, doc.GetAllocator());
 }
