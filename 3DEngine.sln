@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External", "External", "{96
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DirectXTK_Desktop_2022", "External\DirectXTK\DirectXTK_Desktop_2022.vcxproj", "{E0B52AE7-E160-4D32-BF3F-910B785E5A8E}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FW1FontWrapper", "External\FW1FontWrapper\FW1FontWrapper.vcxproj", "{0D034612-14E2-44E7-993A-72344A2CA7BD}"
+EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Graphics", "Framework\Graphics\Graphics.vcxproj", "{341C9BB3-DAA2-49F5-B08A-90E39EAF34E9}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "02_HelloShapes", "VGP242\02_HelloShapes\02_HelloShapes.vcxproj", "{C8C9EF2E-7690-4CC0-859D-244C71C560D0}"
@@ -115,6 +117,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Objects", "Objects", "{B2ADA23C-B4A4-489A-9A06-6BC2C6559B73}"
 	ProjectSection(SolutionItems) = preProject
+		Assets\Templates\Objects\custom_obj.json = Assets\Templates\Objects\custom_obj.json
 		Assets\Templates\Objects\fps_camera.json = Assets\Templates\Objects\fps_camera.json
 		Assets\Templates\Objects\ground.json = Assets\Templates\Objects\ground.json
 		Assets\Templates\Objects\mesh_obj.json = Assets\Templates\Objects\mesh_obj.json
@@ -123,6 +126,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Objects", "Objects", "{B2AD
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "23_HelloGameObjectFactory", "VGP336\23_HelloGameObjectFactory\23_HelloGameObjectFactory.vcxproj", "{880121FB-DC84-40FC-9EBA-FEF0C7D2BF80}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Levels", "Levels", "{81CE30DB-6FF1-48C5-A74D-CC94C18F3879}"
+	ProjectSection(SolutionItems) = preProject
+		Assets\Templates\Levels\level.json = Assets\Templates\Levels\level.json
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "24_HelloGameWorld", "VGP336\24_HelloGameWorld\24_HelloGameWorld.vcxproj", "{949DECEC-DA08-4D59-8DA6-C5F4E1991E24}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -172,6 +182,14 @@ Global
 		{E0B52AE7-E160-4D32-BF3F-910B785E5A8E}.Release|x64.Build.0 = Release|x64
 		{E0B52AE7-E160-4D32-BF3F-910B785E5A8E}.Release|x86.ActiveCfg = Release|Win32
 		{E0B52AE7-E160-4D32-BF3F-910B785E5A8E}.Release|x86.Build.0 = Release|Win32
+		{0D034612-14E2-44E7-993A-72344A2CA7BD}.Debug|x64.ActiveCfg = Debug|x64
+		{0D034612-14E2-44E7-993A-72344A2CA7BD}.Debug|x64.Build.0 = Debug|x64
+		{0D034612-14E2-44E7-993A-72344A2CA7BD}.Debug|x86.ActiveCfg = Debug|Win32
+		{0D034612-14E2-44E7-993A-72344A2CA7BD}.Debug|x86.Build.0 = Debug|Win32
+		{0D034612-14E2-44E7-993A-72344A2CA7BD}.Release|x64.ActiveCfg = Release|x64
+		{0D034612-14E2-44E7-993A-72344A2CA7BD}.Release|x64.Build.0 = Release|x64
+		{0D034612-14E2-44E7-993A-72344A2CA7BD}.Release|x86.ActiveCfg = Release|Win32
+		{0D034612-14E2-44E7-993A-72344A2CA7BD}.Release|x86.Build.0 = Release|Win32
 		{341C9BB3-DAA2-49F5-B08A-90E39EAF34E9}.Debug|x64.ActiveCfg = Debug|x64
 		{341C9BB3-DAA2-49F5-B08A-90E39EAF34E9}.Debug|x64.Build.0 = Debug|x64
 		{341C9BB3-DAA2-49F5-B08A-90E39EAF34E9}.Debug|x86.ActiveCfg = Debug|Win32
@@ -436,6 +454,14 @@ Global
 		{880121FB-DC84-40FC-9EBA-FEF0C7D2BF80}.Release|x64.Build.0 = Release|x64
 		{880121FB-DC84-40FC-9EBA-FEF0C7D2BF80}.Release|x86.ActiveCfg = Release|Win32
 		{880121FB-DC84-40FC-9EBA-FEF0C7D2BF80}.Release|x86.Build.0 = Release|Win32
+		{949DECEC-DA08-4D59-8DA6-C5F4E1991E24}.Debug|x64.ActiveCfg = Debug|x64
+		{949DECEC-DA08-4D59-8DA6-C5F4E1991E24}.Debug|x64.Build.0 = Debug|x64
+		{949DECEC-DA08-4D59-8DA6-C5F4E1991E24}.Debug|x86.ActiveCfg = Debug|Win32
+		{949DECEC-DA08-4D59-8DA6-C5F4E1991E24}.Debug|x86.Build.0 = Debug|Win32
+		{949DECEC-DA08-4D59-8DA6-C5F4E1991E24}.Release|x64.ActiveCfg = Release|x64
+		{949DECEC-DA08-4D59-8DA6-C5F4E1991E24}.Release|x64.Build.0 = Release|x64
+		{949DECEC-DA08-4D59-8DA6-C5F4E1991E24}.Release|x86.ActiveCfg = Release|Win32
+		{949DECEC-DA08-4D59-8DA6-C5F4E1991E24}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -446,6 +472,7 @@ Global
 		{C58241CD-EAC3-46A1-A61D-8D62022172B9} = {0A018CD2-2A3C-4CAE-B017-652FB7A32785}
 		{010A10EA-309A-4A40-8060-528235283023} = {6CD879E0-67E9-4B40-B7DA-346056727AC1}
 		{E0B52AE7-E160-4D32-BF3F-910B785E5A8E} = {96F46E99-D1B1-4B7B-BF42-30151BCDDEFF}
+		{0D034612-14E2-44E7-993A-72344A2CA7BD} = {96F46E99-D1B1-4B7B-BF42-30151BCDDEFF}
 		{341C9BB3-DAA2-49F5-B08A-90E39EAF34E9} = {6CD879E0-67E9-4B40-B7DA-346056727AC1}
 		{C8C9EF2E-7690-4CC0-859D-244C71C560D0} = {0A018CD2-2A3C-4CAE-B017-652FB7A32785}
 		{9E8AB125-6C7A-4972-A197-252DF14E0A6D} = {81D4BB96-B526-4904-ACF5-1E7900598A49}
@@ -482,6 +509,8 @@ Global
 		{53C01949-88F2-46AF-BBA1-C1D24E8EA6D8} = {81D4BB96-B526-4904-ACF5-1E7900598A49}
 		{B2ADA23C-B4A4-489A-9A06-6BC2C6559B73} = {53C01949-88F2-46AF-BBA1-C1D24E8EA6D8}
 		{880121FB-DC84-40FC-9EBA-FEF0C7D2BF80} = {0D127E2E-A351-4DEB-A710-BD05634BB5E6}
+		{81CE30DB-6FF1-48C5-A74D-CC94C18F3879} = {53C01949-88F2-46AF-BBA1-C1D24E8EA6D8}
+		{949DECEC-DA08-4D59-8DA6-C5F4E1991E24} = {0D127E2E-A351-4DEB-A710-BD05634BB5E6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3FD362C1-9DCF-4C30-BA1C-7C60EAFBEABC}

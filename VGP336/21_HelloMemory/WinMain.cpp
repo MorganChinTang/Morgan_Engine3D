@@ -107,7 +107,7 @@ private:
 
 };
 
-int WinMain(HINSTANCE instance, HINSTANCE, LPSTR, int)
+int WINAPI WinMain(HINSTANCE instance, HINSTANCE, LPSTR, int)
 {
     TypedAllocator studentPool = TypedAllocator<Student>("StudentPool", 100);
     TypedAllocator dogPool = TypedAllocator<Dog>("DogPool", 100);

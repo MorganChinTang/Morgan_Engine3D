@@ -12,6 +12,11 @@ namespace Engine3D
         Model,
         Animator,
         RigidBody,
+        SoundEffect,               // adds a sound effect to an object
+        SoundBank,                 // adds a group of sounds to an object
+        UIText,                    // adds a UI text Component
+        UIBSprite,                 // adds a UI BSprite Component
+        UButton,
         Count       // last value, can be used to chain custom component
 
     };
@@ -22,6 +27,7 @@ namespace Engine3D
         Camera,
         Render,
         Physics,
+        UIRender,
         Count
     };
 }

@@ -118,6 +118,12 @@ void PhysicsWorld::DebugUI()
     }
 }
 
+void PhysicsWorld::UpdateSettings(const Settings& settings)
+{
+    mSettings = settings;
+    SetGravity(mSettings.gravity);
+}
+
 void PhysicsWorld::SetGravity(const Math::Vector3& gravity)
 {
     mSettings.gravity = gravity;

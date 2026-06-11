@@ -50,6 +50,6 @@ namespace Engine3D::Graphics
 
 		const DirectionalLight* mDirectionalLight = nullptr;
 		Math::Vector3 mFocusPoint = Math::Vector3::Zero;
-		float mSize = 100.0f;
+		float mSize = 10.0f;
 	};
 }

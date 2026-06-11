@@ -9,6 +9,9 @@
 
 #include <DirectXTK/Inc/CommonStates.h>
 
+#include <DirectXTK/Inc/SpriteBatch.h>
+#include <FW1FontWrapper/Inc/FW1FontWrapper.h>
+
 //ImGui
 #include <ImGui/Inc/imgui.h>
 

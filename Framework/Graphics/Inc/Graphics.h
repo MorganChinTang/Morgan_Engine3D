@@ -40,6 +40,7 @@
 #include "TerrainEffect.h"
 #include "Texture.h"
 #include "Transform.h"
+#include "UIFont.h"
 #include "TextureManager.h"
 #include "VertexShader.h"
 #include "VertexTypes.h"

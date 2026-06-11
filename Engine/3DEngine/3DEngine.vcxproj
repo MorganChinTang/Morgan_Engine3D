@@ -156,8 +156,13 @@
     <ClInclude Include="Inc\RigidBodyComponent.h" />
     <ClInclude Include="Inc\SaveUtil.h" />
     <ClInclude Include="Inc\Service.h" />
+    <ClInclude Include="Inc\SoundBankComponent.h" />
+    <ClInclude Include="Inc\SoundEventComponent.h" />
     <ClInclude Include="Inc\TransformComponent.h" />
     <ClInclude Include="Inc\TypeId.h" />
+    <ClInclude Include="Inc\UIComponent.h" />
+    <ClInclude Include="Inc\UIRenderService.h" />
+    <ClInclude Include="Inc\UITextComponent.h" />
     <ClInclude Include="Src\Precompiled.h" />
   </ItemGroup>
   <ItemGroup>
@@ -183,7 +188,11 @@
     <ClCompile Include="Src\RenderService.cpp" />
     <ClCompile Include="Src\RigidBodyComponent.cpp" />
     <ClCompile Include="Src\SaveUtil.cpp" />
+    <ClCompile Include="Src\SoundBankComponent.cpp" />
+    <ClCompile Include="Src\SoundEventComponent.cpp" />
     <ClCompile Include="Src\TransformComponent.cpp" />
+    <ClCompile Include="Src\UIRenderService.cpp" />
+    <ClCompile Include="Src\UITextComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Framework\Audio\Audio.vcxproj">
