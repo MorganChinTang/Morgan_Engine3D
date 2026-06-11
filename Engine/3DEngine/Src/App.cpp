@@ -35,6 +35,7 @@ void App::Run(const AppConfig& config )
     AudioSystem::StaticInitialize();
     SoundEffectManager::StaticInitialize(L"../../Assets/Audio");
     UIFont::StaticInitialize(UIFont::FontType::Arial);
+    UISpriteRenderer::StaticInitialize();
 
     //last step before running
     ASSERT(mCurrentState != nullptr, "App: Need an app state to run");
@@ -84,6 +85,7 @@ void App::Run(const AppConfig& config )
     //Terminate everything
     LOG("App Quit");
     mCurrentState->Terminate();
+    UISpriteRenderer::StaticTerminate();
     UIFont::StaticTerminate();
     SoundEffectManager::StaticTerminate();
     AudioSystem::StaticTerminate();

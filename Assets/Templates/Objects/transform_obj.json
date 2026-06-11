@@ -8,15 +8,15 @@
     "SoundBankComponent": {
       "SoundEffects": {
         "Explosion": {
-          "FileName": "../../Assets/Audio/explosion.wav",
+          "FileName": "explosion.wav",
           "Looping": false
         },
         "Shot": {
-          "FileName": "../../Assets/Audio/megamanx_shot.wav",
+          "FileName": "megamanx_shot.wav",
           "Looping": false
         },
         "Spark": {
-          "FileName": "../../Assets/Audio/megamanx_spark_mandrill.wav",
+          "FileName": "megamanx_spark_mandrill.wav",
           "Looping": false
         }
       }

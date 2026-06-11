@@ -15,7 +15,7 @@ namespace Engine3D
         SoundEffect,               // adds a sound effect to an object
         SoundBank,                 // adds a group of sounds to an object
         UIText,                    // adds a UI text Component
-        UIBSprite,                 // adds a UI BSprite Component
+        UISprite,                  // adds a UI sprite Component
         UButton,
         Count       // last value, can be used to chain custom component
 

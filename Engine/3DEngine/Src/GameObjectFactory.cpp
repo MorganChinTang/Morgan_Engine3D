@@ -13,6 +13,7 @@
 #include "SoundEventComponent.h"
 #include "SoundBankComponent.h"
 #include "UITextComponent.h"
+#include "UISpriteComponent.h"
 
 using namespace Engine3D;
 
@@ -64,6 +65,10 @@ namespace
         {
             newComponent = gameObject.AddComponent<UITextComponent>();
         }
+        else if (componentName == "UISpriteComponent")
+        {
+            newComponent = gameObject.AddComponent<UISpriteComponent>();
+        }
         else
         {
             newComponent = TryMakeComponent(componentName, gameObject);
@@ -114,6 +119,10 @@ Component* GetComponent(const std::string& componentName, GameObject& gameObject
     else if (componentName == "SoundBankComponent")
     {
         newComponent = gameObject.GetComponent<SoundBankComponent>();
+    }
+    else if (componentName == "UISpriteComponent")
+    {
+        newComponent = gameObject.GetComponent<UISpriteComponent>();
     }
     else
     {
