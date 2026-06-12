@@ -1,7 +1,7 @@
 #include "Precompiled.h"
 #include "GameObjectFactory.h"
 #include "GameObject.h"
-
+#include "GameWorld.h"
 #include "Component.h"
 #include "TransformComponent.h"
 #include "CameraComponent.h"
@@ -14,6 +14,8 @@
 #include "SoundBankComponent.h"
 #include "UITextComponent.h"
 #include "UISpriteComponent.h"
+#include "UIButtonComponent.h"
+#include "PlayerControllerComponent.h"
 
 using namespace Engine3D;
 
@@ -69,6 +71,14 @@ namespace
         {
             newComponent = gameObject.AddComponent<UISpriteComponent>();
         }
+        else if (componentName == "UIButtonComponent")
+        {
+            newComponent = gameObject.AddComponent<UIButtonComponent>();
+        }
+        else if (componentName == "PlayerControllerComponent")
+        {
+            newComponent = gameObject.AddComponent<PlayerControllerComponent>();
+        }
         else
         {
             newComponent = TryMakeComponent(componentName, gameObject);
@@ -120,9 +130,21 @@ Component* GetComponent(const std::string& componentName, GameObject& gameObject
     {
         newComponent = gameObject.GetComponent<SoundBankComponent>();
     }
+    else if (componentName == "UITextComponent")
+    {
+        newComponent = gameObject.GetComponent<UITextComponent>();
+    }
     else if (componentName == "UISpriteComponent")
     {
         newComponent = gameObject.GetComponent<UISpriteComponent>();
+    }
+    else if (componentName == "UIButtonComponent")
+    {
+        newComponent = gameObject.GetComponent<UIButtonComponent>();
+    }
+    else if (componentName == "PlayerControllerComponent")
+    {
+        newComponent = gameObject.GetComponent<PlayerControllerComponent>();
     }
     else
     {
@@ -154,6 +176,11 @@ void GameObjectFactory::Make(const std::filesystem::path& templatePath, GameObje
     rapidjson::Document doc;
     doc.ParseStream(readStream);
     fclose(file);
+
+    ASSERT(!doc.HasParseError(), "GameObjectFactory: Failed to parse json file %s", templatePath.u8string().c_str());
+    ASSERT(doc.IsObject(), "GameObjectFactory: Root json is not an object in file %s", templatePath.u8string().c_str());
+    ASSERT(doc.HasMember("Components") && doc["Components"].IsObject(), "GameObjectFactory: Missing or invalid Components object in file %s", templatePath.u8string().c_str());
+
     auto components = doc["Components"].GetObj();
     for (auto& component : components)
     {
@@ -165,12 +192,34 @@ void GameObjectFactory::Make(const std::filesystem::path& templatePath, GameObje
             newComponent->Deserialize(component.value);
         }
     }
+
+    if (doc.HasMember("Children"))
+    {
+        ASSERT(doc["Children"].IsObject(), "GameObjectFactory: Children must be an object in file %s", templatePath.u8string().c_str());
+        auto children = doc["Children"].GetObj();
+        for (auto& child : children)
+        {
+            ASSERT(child.value.IsObject(), "GameObjectFactory: Child entry [%s] must be an object in file %s", child.name.GetString(), templatePath.u8string().c_str());
+            ASSERT(child.value.HasMember("Template") && child.value["Template"].IsString(), "GameObjectFactory: Child entry [%s] missing Template string in file %s", child.name.GetString(), templatePath.u8string().c_str());
+
+            std::string name = child.name.GetString();
+            std::filesystem::path childTemplate = child.value["Template"].GetString();
+            GameObject* childGO = gameWorld.CreateGameObject(name, childTemplate);
+
+            OverrideDeserialize(child.value, *childGO);
+            gameObject.AddChild(childGO);
+            childGO->SetParent(&gameObject);
+
+        }
+    }
 }
 
 void GameObjectFactory::OverrideDeserialize(const rapidjson::Value& value, GameObject& gameObject)
 {
+    ASSERT(value.IsObject(), "GameObjectFactory: OverrideDeserialize value must be an object");
     if (value.HasMember("Components"))
     {
+        ASSERT(value["Components"].IsObject(), "GameObjectFactory: Override Components must be an object");
         auto components = value["Components"].GetObj();
         for (auto& component : components)
         {

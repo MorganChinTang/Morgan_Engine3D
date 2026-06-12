@@ -56,7 +56,7 @@
       "Template": "../../Assets/Templates/Objects/model_obj.json",
       "Components": {
         "TransformComponent": {
-          "Position": [ 0.0, 0.0, 2.0 ],
+          "Position": [ -5.0, 0.0, 0.0 ],
           "Rotation": [ 0.0, 0.0, 0.0, 1.0 ],
           "Scale": [ 1.0, 1.0, 1.0 ]
         }
@@ -72,8 +72,11 @@
         }
       }
     },
-    "CustomDebugDrawObj": {
-      "Template": "../../Assets/Templates/Objects/custom_obj.json"
+    "HUD": {
+      "Template": "../../Assets/Templates/UI/hud_screen.json"
+    },
+    "Player": {
+      "Template": "../../Assets/Templates/Objects/player_obj.json"
     }
   }
 }

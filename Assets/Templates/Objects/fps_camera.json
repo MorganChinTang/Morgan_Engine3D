@@ -1,13 +1,13 @@
 {
   "Components": {
     "CameraComponent": {
-      "Position": [ 0.0, 2.0, -7.0 ],
-      "LookAt": [ 0.0, 0.0, 0.0 ]
+      "Position": [ 0.0, 2.0, -3.0 ],
+      "LookAt": [ 0.0, 1.0, 0.0 ]
     },
     "FPSCameraComponent": {
-      "MoveSpeed": 1.0,
-      "ShiftSpeed": 10.0,
-      "TurnSpeed": 0.1
+      "MoveSpeed": 0.0,
+      "ShiftSpeed": 0.0,
+      "TurnSpeed": 0.0
     }
   }
 }

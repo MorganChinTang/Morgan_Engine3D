@@ -8,15 +8,17 @@ namespace Engine3D
         Transform,
         Camera,
         FPSCamera,
+        TPCamera,
         Mesh,
         Model,
         Animator,
         RigidBody,
+        PlayerController,
         SoundEffect,               // adds a sound effect to an object
         SoundBank,                 // adds a group of sounds to an object
         UIText,                    // adds a UI text Component
         UISprite,                  // adds a UI sprite Component
-        UButton,
+        UIButton,
         Count       // last value, can be used to chain custom component
 
     };

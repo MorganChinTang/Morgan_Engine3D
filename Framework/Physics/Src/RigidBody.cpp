@@ -69,6 +69,15 @@ const Math::Vector3 RigidBody::GetVelocity() const
     return ToVector3(mRigidBody->getLinearVelocity());
 }
 
+void RigidBody::SetAngularVelocity(const Math::Vector3& velocity)
+{
+    mRigidBody->activate();
+    mRigidBody->setAngularVelocity(TobtVector3(velocity));
+}
+const Math::Vector3 RigidBody::GetAngularVelocity() const
+{
+    return ToVector3(mRigidBody->getAngularVelocity());
+}
 
 bool RigidBody::IsDynamic() const
 {

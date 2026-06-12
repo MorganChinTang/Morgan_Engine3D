@@ -1,0 +1,9 @@
+{
+  "Components": {
+    "UISpriteComponent": {
+      "Texture": "Images/mario.png",
+      "Position": [ 400.0, 300.0 ],
+      "Pivot":  "TopLeft"
+    }
+  }
+}

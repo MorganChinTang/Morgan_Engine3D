@@ -28,6 +28,21 @@ void UISpriteComponent::Terminate()
 }
 void UISpriteComponent::Render()
 {
+    Math::Vector2 worldPosition = GetPosition(false);
+    GameObject* parent = GetOwner().GetParent();
+    while (parent != nullptr)
+    {
+        UISpriteComponent* spriteComponent = parent->GetComponent<UISpriteComponent>();
+        if (spriteComponent != nullptr)
+        {
+            worldPosition += spriteComponent->GetPosition();
+        }
+
+        parent = parent->GetParent();
+    }
+
+    mUISprite.SetPosition({ worldPosition.x, worldPosition.y });
+
     UISpriteRenderer::Get()->Render(mUISprite);
 }
 void UISpriteComponent::Deserialize(const rapidjson::Value& value)
@@ -41,7 +56,6 @@ void UISpriteComponent::Deserialize(const rapidjson::Value& value)
         auto pos = value["Position"].GetArray();
         mPosition.x = pos[0].GetFloat();
         mPosition.y = pos[1].GetFloat();
-        mUISprite.SetPosition(mPosition);
     }
     if (value.HasMember("Scale"))
     {
@@ -90,7 +104,6 @@ void UISpriteComponent::Deserialize(const rapidjson::Value& value)
     // get rotation
     float rotation = 0.0f;
     SaveUtil::ReadFloat("Rotation", rotation, value);
-    mUISprite.SetRotation(rotation);
 }
 Math::Vector2 UISpriteComponent::GetPosition(bool includeOrigin)
 {

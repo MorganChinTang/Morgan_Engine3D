@@ -16,7 +16,7 @@
 
     },
     "RigidBodyComponent": {
-      "Mass": 1.0,
+      "Mass": 2.0,
       "CollisiderData": {
         "Shape": "Hull",
         "HalfExtents": [ 0.5, 1.0, 0.5 ],
@@ -30,10 +30,5 @@
       "Position": [ 0.0, 1.0, 0.0 ],
       "Color": [ 0.3, 1.0, 0.3, 1.0 ]
     }
-  },
-  "UISpriteComponent": {
-    "Texture": "Images/mario.png",
-    "Position": [ 400.0, 300.0 ],
-    "Pivot": "TopLeft"
   }
 }
