@@ -1,5 +1,7 @@
 #pragma once
 
+#include "AsyncLoadController.h"
+#include "GridPlacementController.h"
 #include <3DEngine/Inc/3DEngine.h>
 
 class GameState : public Engine3D::AppState
@@ -14,5 +16,7 @@ public:
 private:
     std::filesystem::path mLevelFile;
     Engine3D::GameWorld mGameWorld;
+    GridPlacementController mGridPlacementController;
+    AsyncLoadController mAsyncLoadController;
 
 };

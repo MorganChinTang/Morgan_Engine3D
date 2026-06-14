@@ -127,15 +127,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AsyncLoadController.h" />
     <ClInclude Include="CustomDebugDrawComponent.h" />
     <ClInclude Include="CustomDebugDrawService.h" />
     <ClInclude Include="CustomTypeIds.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="GridPlacementController.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AsyncLoadController.cpp" />
     <ClCompile Include="CustomDebugDrawComponent.cpp" />
     <ClCompile Include="CustomDebugDrawService.cpp" />
     <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="GridPlacementController.cpp" />
     <ClCompile Include="WinMain.cpp" />
   </ItemGroup>
   <ItemGroup>

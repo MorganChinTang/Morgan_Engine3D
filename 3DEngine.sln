@@ -120,6 +120,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Objects", "Objects", "{B2AD
 		Assets\Templates\Objects\compound_mesh.json = Assets\Templates\Objects\compound_mesh.json
 		Assets\Templates\Objects\custom_obj.json = Assets\Templates\Objects\custom_obj.json
 		Assets\Templates\Objects\fps_camera.json = Assets\Templates\Objects\fps_camera.json
+		Assets\Templates\Objects\furniture_cactus.json = Assets\Templates\Objects\furniture_cactus.json
+		Assets\Templates\Objects\furniture_salad.json = Assets\Templates\Objects\furniture_salad.json
+		Assets\Templates\Objects\grid_ground.json = Assets\Templates\Objects\grid_ground.json
 		Assets\Templates\Objects\ground.json = Assets\Templates\Objects\ground.json
 		Assets\Templates\Objects\mesh_obj.json = Assets\Templates\Objects\mesh_obj.json
 		Assets\Templates\Objects\model_obj.json = Assets\Templates\Objects\model_obj.json
@@ -132,6 +135,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "23_HelloGameObjectFactory",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Levels", "Levels", "{81CE30DB-6FF1-48C5-A74D-CC94C18F3879}"
 	ProjectSection(SolutionItems) = preProject
+		Assets\Templates\Levels\grid_placement_level.json = Assets\Templates\Levels\grid_placement_level.json
 		Assets\Templates\Levels\level.json = Assets\Templates\Levels\level.json
 	EndProjectSection
 EndProject
@@ -139,6 +143,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "24_HelloGameWorld", "VGP336
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{05ADB632-B712-4838-BCA5-8D6A8E283DD3}"
 	ProjectSection(SolutionItems) = preProject
+		Assets\Templates\UI\grid_controls_text.json = Assets\Templates\UI\grid_controls_text.json
 		Assets\Templates\UI\hud_screen.json = Assets\Templates\UI\hud_screen.json
 		Assets\Templates\UI\ui_button.json = Assets\Templates\UI\ui_button.json
 		Assets\Templates\UI\ui_sprite.json = Assets\Templates\UI\ui_sprite.json
