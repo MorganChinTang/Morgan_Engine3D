@@ -38,6 +38,13 @@ void AnimatorComponent::DebugUI()
         }
     }
 }
+
+void AnimatorComponent::Serialize(rapidjson::Document& doc, rapidjson::Value& value, const rapidjson::Value& originalValue)
+{
+    rapidjson::Value componentValue(rapidjson::kObjectType);
+    value.AddMember("AnimatorComponent", componentValue, doc.GetAllocator());
+}
+
 bool AnimatorComponent::Play(int index, bool looping)
 {
     if (index < mAnimator.GetAnimationCount())

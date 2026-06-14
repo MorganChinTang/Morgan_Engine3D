@@ -34,3 +34,8 @@ void UIRenderService::Unregister(UIComponent* uiComponent)
     }
 }
 
+void UIRenderService::Serialize(rapidjson::Document& doc, rapidjson::Value& value)
+{
+    rapidjson::Value serviceValue(rapidjson::kObjectType);
+    value.AddMember("UIRenderService", serviceValue, doc.GetAllocator());
+}

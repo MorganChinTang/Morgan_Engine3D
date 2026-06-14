@@ -130,10 +130,14 @@ void PhysicsWorld::SetGravity(const Math::Vector3& gravity)
     mDynamicsWorld->setGravity(TobtVector3(gravity));
 }
 
+const PhysicsWorld::Settings& PhysicsWorld::GetSettings() const
+{
+    return mSettings;
+}
+
 void PhysicsWorld::Register(PhysicsObject* physicsObject)
 {
     auto iter = std::find(mPhysicsObjects.begin(), mPhysicsObjects.end(), physicsObject);
-    // if iter is the end, it is NOT in the list, register means we wnt to add it, so it is safe to add now
     if (iter == mPhysicsObjects.end())
     {
         mPhysicsObjects.push_back(physicsObject);

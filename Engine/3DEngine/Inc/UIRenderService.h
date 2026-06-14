@@ -13,6 +13,7 @@ namespace Engine3D
 
         void Terminate() override;
         void Render() override;
+        void Serialize(rapidjson::Document& doc, rapidjson::Value& value) override;
 
         void Register(UIComponent* uiComponent);
         void Unregister(UIComponent* uiComponent);

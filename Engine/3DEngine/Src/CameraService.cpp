@@ -10,6 +10,12 @@ void CameraService::DebugUI()
     Graphics::SimpleDraw::Render(GetMain());
 }
 
+void CameraService::Serialize(rapidjson::Document& doc, rapidjson::Value& value)
+{
+    rapidjson::Value serviceValue(rapidjson::kObjectType);
+    value.AddMember("CameraService", serviceValue, doc.GetAllocator());
+}
+
 const Graphics::Camera& Engine3D::CameraService::GetMain() const
 {
     ASSERT(mMainCamera != nullptr, "CameraService: has no main camera");
@@ -36,6 +42,7 @@ void CameraService::Register(const CameraComponent* cameraComponent)
         }
     }
 }
+
 void CameraService::Unregister(const CameraComponent* cameraComponent)
 {
     auto iter = std::find(mCameraEntries.begin(), mCameraEntries.end(), cameraComponent);

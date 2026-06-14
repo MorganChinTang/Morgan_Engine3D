@@ -16,6 +16,7 @@
 #include "UISpriteComponent.h"
 #include "UIButtonComponent.h"
 #include "PlayerControllerComponent.h"
+#include "TPSCameraComponent.h"
 
 using namespace Engine3D;
 
@@ -78,6 +79,10 @@ namespace
         else if (componentName == "PlayerControllerComponent")
         {
             newComponent = gameObject.AddComponent<PlayerControllerComponent>();
+        }
+        else if (componentName == "TPSCameraComponent")
+        {
+            newComponent = gameObject.AddComponent<TPSCameraComponent>();
         }
         else
         {
@@ -146,6 +151,10 @@ Component* GetComponent(const std::string& componentName, GameObject& gameObject
     {
         newComponent = gameObject.GetComponent<PlayerControllerComponent>();
     }
+    else if (componentName == "TPSCameraComponent")
+    {
+        newComponent = gameObject.GetComponent<TPSCameraComponent>();
+    }
     else
     {
         newComponent = TryGetComponent(componentName, gameObject);
@@ -168,8 +177,9 @@ void GameObjectFactory::SetCustomGet(CustomComponent callback)
 void GameObjectFactory::Make(const std::filesystem::path& templatePath, GameObject& gameObject, GameWorld& gameWorld)
 {
     FILE* file = nullptr;
-    auto err = fopen_s(&file, templatePath.u8string().c_str(), "r");
-    ASSERT(err == 0, "GameObjectFactory: Failed to open file %s", templatePath.u8string().c_str());
+    auto pathStr = templatePath.string();
+    auto err = fopen_s(&file, pathStr.c_str(), "r");
+    ASSERT(err == 0, "GameObjectFactory: Failed to open file %s", pathStr.c_str());
 
     char readBuffer[65536];
     rapidjson::FileReadStream readStream(file, readBuffer, sizeof(readBuffer));
@@ -228,6 +238,27 @@ void GameObjectFactory::OverrideDeserialize(const rapidjson::Value& value, GameO
             {
                 ownedComponent->Deserialize(component.value);
             }
+        }
+    }
+}
+
+void GameObjectFactory::SerializeGameObject(rapidjson::Document& doc, const rapidjson::Document& original, GameObject& gameObject)
+{
+    if (original.HasMember("Components"))
+    {
+        auto components = original["Components"].GetObj();
+        rapidjson::Value componentsValue(rapidjson::kObjectType);
+        for (auto& component : components)
+        {
+            Component* ownedComponent = GetComponent(component.name.GetString(), gameObject);
+            if (ownedComponent != nullptr)
+            {
+                ownedComponent->Serialize(doc, componentsValue, component.value);
+            }
+        }
+        if (componentsValue.MemberCount() > 0)
+        {
+            doc.AddMember("Components", componentsValue, doc.GetAllocator());
         }
     }
 }

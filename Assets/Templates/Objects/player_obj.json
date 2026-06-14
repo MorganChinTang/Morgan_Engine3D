@@ -32,10 +32,16 @@
       }
     },
     "PlayerControllerComponent": {
-      "mShiftSpeed": 10.0,
-      "mMoveSpeed": 1.0,
-      "mTurnSpeed": 0.1,
-      "mJumpSpeed": 10.0
+      "ShiftSpeed": 10.0,
+      "MoveSpeed": 1.0,
+      "TurnSpeed": 0.1,
+      "JumpSpeed": 10.0
+    },
+    "TPSCameraComponent": {
+      "Offset": [ 1.0, 1.0, -2.3 ],
+      "Smoothing": 3.0
+    },
+    "CameraComponent": {
     }
   }
 }
