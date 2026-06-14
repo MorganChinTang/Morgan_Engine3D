@@ -1,0 +1,10 @@
+{
+  "Components": {
+    "UITextComponent": {
+      "Text": "Controls:\nLMB - Pick / Place\nRMB - Cancel Placement\nQ / E - Rotate Held Object\nWASD - Pan Camera\nMouse Wheel - Zoom Camera",
+      "Color": [ 1.0, 1.0, 1.0, 1.0 ],
+      "Position": [ 24.0, 24.0 ],
+      "Size": 18
+    }
+  }
+}
