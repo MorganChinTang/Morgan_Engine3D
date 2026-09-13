@@ -40,6 +40,7 @@ void GridPlacementController::Initialize(GameWorld& gameWorld)
     {
         Camera& camera = const_cast<Camera&>(cameraService->GetMain());
         camera.SetDirection(Normalize(Vector3(0.0f, -1.0f, 0.35f)));
+        camera.SetDirection(Normalize(Vector3(0.0f, -1.0f, 0.35f)));
     }
 }
 
