@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{81ce9db3-0180-45a2-afdb-859267529cad}</ProjectGuid>
-    <RootNamespace>My3DEngine</RootNamespace>
+    <ProjectGuid>{52d97f82-3bab-4587-bd9b-1d020e0ee1fb}</ProjectGuid>
+    <RootNamespace>Network</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -59,19 +59,19 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\VSProps\EngineLib.props" />
+    <Import Project="..\..\VSProps\FrameworkLib.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\VSProps\EngineLib.props" />
+    <Import Project="..\..\VSProps\FrameworkLib.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\VSProps\EngineLib.props" />
+    <Import Project="..\..\VSProps\FrameworkLib.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\VSProps\EngineLib.props" />
+    <Import Project="..\..\VSProps\FrameworkLib.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -99,8 +99,6 @@
     <Link>
       <SubSystem>
       </SubSystem>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -129,103 +127,44 @@
     <Link>
       <SubSystem>
       </SubSystem>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Inc\3DEngine.h" />
-    <ClInclude Include="Inc\AnimatorComponent.h" />
-    <ClInclude Include="Inc\App.h" />
-    <ClInclude Include="Inc\AppState.h" />
-    <ClInclude Include="Inc\CameraComponent.h" />
-    <ClInclude Include="Inc\CameraService.h" />
+    <ClInclude Include="Inc\Client.h" />
     <ClInclude Include="Inc\Common.h" />
-    <ClInclude Include="Inc\Component.h" />
-    <ClInclude Include="Inc\FPSCameraComponent.h" />
-    <ClInclude Include="Inc\GameObject.h" />
-    <ClInclude Include="Inc\GameObjectFactory.h" />
-    <ClInclude Include="Inc\GameObjectHandle.h" />
-    <ClInclude Include="Inc\GameWorld.h" />
-    <ClInclude Include="Inc\MeshComponent.h" />
-    <ClInclude Include="Inc\ModelComponent.h" />
-    <ClInclude Include="Inc\NetworkControllerComponent.h" />
-    <ClInclude Include="Inc\NetworkService.h" />
-    <ClInclude Include="Inc\PhysicsService.h" />
-    <ClInclude Include="Inc\PlayerControllerComponent.h" />
-    <ClInclude Include="Inc\RenderObjectComponent.h" />
-    <ClInclude Include="Inc\RenderService.h" />
-    <ClInclude Include="Inc\RigidBodyComponent.h" />
-    <ClInclude Include="Inc\SaveUtil.h" />
-    <ClInclude Include="Inc\Service.h" />
-    <ClInclude Include="Inc\SoundBankComponent.h" />
-    <ClInclude Include="Inc\SoundEventComponent.h" />
-    <ClInclude Include="Inc\TPSCameraComponent.h" />
-    <ClInclude Include="Inc\TransformComponent.h" />
-    <ClInclude Include="Inc\TypeId.h" />
-    <ClInclude Include="Inc\UIButtonComponent.h" />
-    <ClInclude Include="Inc\UIComponent.h" />
-    <ClInclude Include="Inc\UIRenderService.h" />
-    <ClInclude Include="Inc\UISpriteComponent.h" />
-    <ClInclude Include="Inc\UITextComponent.h" />
+    <ClInclude Include="Inc\Network.h" />
+    <ClInclude Include="Inc\NetworkController.h" />
+    <ClInclude Include="Inc\NetworkElement.h" />
+    <ClInclude Include="Inc\NetworkEvents.h" />
+    <ClInclude Include="Inc\NetworkManager.h" />
+    <ClInclude Include="Inc\Server.h" />
     <ClInclude Include="Src\Precompiled.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Src\3DEngine.cpp" />
-    <ClCompile Include="Src\AnimatorComponent.cpp" />
-    <ClCompile Include="Src\App.cpp" />
-    <ClCompile Include="Src\CameraComponent.cpp" />
-    <ClCompile Include="Src\CameraService.cpp" />
-    <ClCompile Include="Src\FPSCameraComponent.cpp" />
-    <ClCompile Include="Src\GameObject.cpp" />
-    <ClCompile Include="Src\GameObjectFactory.cpp" />
-    <ClCompile Include="Src\GameWorld.cpp" />
-    <ClCompile Include="Src\MeshComponent.cpp" />
-    <ClCompile Include="Src\ModelComponent.cpp" />
-    <ClCompile Include="Src\NetworkControllerComponent.cpp" />
-    <ClCompile Include="Src\NetworkService.cpp" />
-    <ClCompile Include="Src\PhysicsService.cpp" />
-    <ClCompile Include="Src\PlayerControllerComponent.cpp" />
+    <ClCompile Include="Src\Client.cpp" />
+    <ClCompile Include="Src\NetworkController.cpp" />
+    <ClCompile Include="Src\NetworkElement.cpp" />
+    <ClCompile Include="Src\NetworkManager.cpp" />
     <ClCompile Include="Src\Precompiled.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Src\RenderObjectComponent.cpp" />
-    <ClCompile Include="Src\RenderService.cpp" />
-    <ClCompile Include="Src\RigidBodyComponent.cpp" />
-    <ClCompile Include="Src\SaveUtil.cpp" />
-    <ClCompile Include="Src\SoundBankComponent.cpp" />
-    <ClCompile Include="Src\SoundEventComponent.cpp" />
-    <ClCompile Include="Src\TPSCameraComponent.cpp" />
-    <ClCompile Include="Src\TransformComponent.cpp" />
-    <ClCompile Include="Src\UIButtonComponent.cpp" />
-    <ClCompile Include="Src\UIRenderService.cpp" />
-    <ClCompile Include="Src\UISpriteComponent.cpp" />
-    <ClCompile Include="Src\UITextComponent.cpp" />
+    <ClCompile Include="Src\Server.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Framework\Audio\Audio.vcxproj">
-      <Project>{91be00e9-5a86-4fb5-b4ac-8771a7f42dca}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Core\Core.vcxproj">
+    <ProjectReference Include="..\Core\Core.vcxproj">
       <Project>{7f2cb4cc-00bd-4121-8f14-c4e1b398493d}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Graphics\Graphics.vcxproj">
+    <ProjectReference Include="..\Graphics\Graphics.vcxproj">
       <Project>{341c9bb3-daa2-49f5-b08a-90e39eaf34e9}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Input\Input.vcxproj">
-      <Project>{3629f01a-6fed-42eb-b308-e9f7f1346eaf}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Math\Math.vcxproj">
+    <ProjectReference Include="..\Math\Math.vcxproj">
       <Project>{010a10ea-309a-4a40-8060-528235283023}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Network\Network.vcxproj">
-      <Project>{52d97f82-3bab-4587-bd9b-1d020e0ee1fb}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Physics\Physics.vcxproj">
+    <ProjectReference Include="..\Physics\Physics.vcxproj">
       <Project>{481368f7-6bf4-4366-b58c-5afe345dca28}</Project>
     </ProjectReference>
   </ItemGroup>

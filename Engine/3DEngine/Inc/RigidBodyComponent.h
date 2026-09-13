@@ -19,6 +19,7 @@ namespace Engine3D
         const Math::Vector3 GetVelocity() const;
         void SetAngularVelocity(const Math::Vector3& velocity);
         const Math::Vector3 GetAngularVelocity() const;
+        const Physics::RigidBody* GetRigidBody() const;
 
     private:
         friend class PhysicsService;

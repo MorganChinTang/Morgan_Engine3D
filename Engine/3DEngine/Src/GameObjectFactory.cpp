@@ -9,7 +9,7 @@
 #include "MeshComponent.h"
 #include "ModelComponent.h"
 #include "AnimatorComponent.h"
-#include "RigidbodyComponent.h"
+#include "RigidBodyComponent.h"
 #include "SoundEventComponent.h"
 #include "SoundBankComponent.h"
 #include "UITextComponent.h"
@@ -17,6 +17,7 @@
 #include "UIButtonComponent.h"
 #include "PlayerControllerComponent.h"
 #include "TPSCameraComponent.h"
+#include "NetworkControllerComponent.h"
 
 using namespace Engine3D;
 
@@ -83,6 +84,10 @@ namespace
         else if (componentName == "TPSCameraComponent")
         {
             newComponent = gameObject.AddComponent<TPSCameraComponent>();
+        }
+        else if (componentName == "NetworkControllerComponent")
+        {
+            newComponent = gameObject.AddComponent<NetworkControllerComponent>();
         }
         else
         {
@@ -154,6 +159,10 @@ Component* GetComponent(const std::string& componentName, GameObject& gameObject
     else if (componentName == "TPSCameraComponent")
     {
         newComponent = gameObject.GetComponent<TPSCameraComponent>();
+    }
+    else if (componentName == "NetworkControllerComponent")
+    {
+        newComponent = gameObject.GetComponent<NetworkControllerComponent>();
     }
     else
     {

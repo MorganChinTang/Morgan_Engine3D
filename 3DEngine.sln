@@ -93,6 +93,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Bullet", "External\Bullet\B
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Physics", "Framework\Physics\Physics.vcxproj", "{481368F7-6BF4-4366-B58C-5AFE345DCA28}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Network", "Framework\Network\Network.vcxproj", "{52D97F82-3BAB-4587-BD9B-1D020E0EE1FB}"
+EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "17_HelloPhysics", "VGP334\17_HelloPhysics\17_HelloPhysics.vcxproj", "{D4BF0344-E167-4645-8E39-7BB564F51423}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "18_HelloParticleSystem", "VGP334\18_HelloParticleSystem\18_HelloParticleSystem.vcxproj", "{EB9FB522-0453-42BC-AB65-F1BAB68A61A1}"
@@ -127,7 +129,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Objects", "Objects", "{B2AD
 		Assets\Templates\Objects\mesh_obj.json = Assets\Templates\Objects\mesh_obj.json
 		Assets\Templates\Objects\model_obj.json = Assets\Templates\Objects\model_obj.json
 		Assets\Templates\Objects\player_obj.json = Assets\Templates\Objects\player_obj.json
+		Assets\Templates\Objects\player_obj_mp.json = Assets\Templates\Objects\player_obj_mp.json
+		Assets\Templates\Objects\player_obj_mp_remote.json = Assets\Templates\Objects\player_obj_mp_remote.json
 		Assets\Templates\Objects\simple_mesh.json = Assets\Templates\Objects\simple_mesh.json
+		Assets\Templates\Objects\static_camera.json = Assets\Templates\Objects\static_camera.json
 		Assets\Templates\Objects\transform_obj.json = Assets\Templates\Objects\transform_obj.json
 	EndProjectSection
 EndProject
@@ -137,6 +142,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Levels", "Levels", "{81CE30
 	ProjectSection(SolutionItems) = preProject
 		Assets\Templates\Levels\grid_placement_level.json = Assets\Templates\Levels\grid_placement_level.json
 		Assets\Templates\Levels\level.json = Assets\Templates\Levels\level.json
+		Assets\Templates\Levels\level_mp.json = Assets\Templates\Levels\level_mp.json
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "24_HelloGameWorld", "VGP336\24_HelloGameWorld\24_HelloGameWorld.vcxproj", "{949DECEC-DA08-4D59-8DA6-C5F4E1991E24}"
@@ -152,6 +158,10 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "00_HelloAsyncFinals", "VGP336\00_HelloAsyncFinals\00_HelloAsyncFinals.vcxproj", "{F9175E52-4806-4D60-9F0B-E8E70D4CDE79}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "00_HelloGridPlacementFinals", "VGP336\00_HelloGridPlacementFinals\00_HelloGridPlacementFinals.vcxproj", "{8162347A-7F6C-4578-98E1-867AAFF615FD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VGP331", "VGP331", "{9EDA9AB7-7C31-42FC-9B1E-FA16472A7C1A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "25_HelloNetwork", "VGP331\25_HelloNetwork\25_HelloNetwork.vcxproj", "{5F95A7C0-229A-4F12-A828-0DE2DA42CF7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -393,6 +403,14 @@ Global
 		{481368F7-6BF4-4366-B58C-5AFE345DCA28}.Release|x64.Build.0 = Release|x64
 		{481368F7-6BF4-4366-B58C-5AFE345DCA28}.Release|x86.ActiveCfg = Release|Win32
 		{481368F7-6BF4-4366-B58C-5AFE345DCA28}.Release|x86.Build.0 = Release|Win32
+		{52D97F82-3BAB-4587-BD9B-1D020E0EE1FB}.Debug|x64.ActiveCfg = Debug|x64
+		{52D97F82-3BAB-4587-BD9B-1D020E0EE1FB}.Debug|x64.Build.0 = Debug|x64
+		{52D97F82-3BAB-4587-BD9B-1D020E0EE1FB}.Debug|x86.ActiveCfg = Debug|Win32
+		{52D97F82-3BAB-4587-BD9B-1D020E0EE1FB}.Debug|x86.Build.0 = Debug|Win32
+		{52D97F82-3BAB-4587-BD9B-1D020E0EE1FB}.Release|x64.ActiveCfg = Release|x64
+		{52D97F82-3BAB-4587-BD9B-1D020E0EE1FB}.Release|x64.Build.0 = Release|x64
+		{52D97F82-3BAB-4587-BD9B-1D020E0EE1FB}.Release|x86.ActiveCfg = Release|Win32
+		{52D97F82-3BAB-4587-BD9B-1D020E0EE1FB}.Release|x86.Build.0 = Release|Win32
 		{D4BF0344-E167-4645-8E39-7BB564F51423}.Debug|x64.ActiveCfg = Debug|x64
 		{D4BF0344-E167-4645-8E39-7BB564F51423}.Debug|x64.Build.0 = Debug|x64
 		{D4BF0344-E167-4645-8E39-7BB564F51423}.Debug|x86.ActiveCfg = Debug|Win32
@@ -497,6 +515,14 @@ Global
 		{8162347A-7F6C-4578-98E1-867AAFF615FD}.Release|x64.Build.0 = Release|x64
 		{8162347A-7F6C-4578-98E1-867AAFF615FD}.Release|x86.ActiveCfg = Release|Win32
 		{8162347A-7F6C-4578-98E1-867AAFF615FD}.Release|x86.Build.0 = Release|Win32
+		{5F95A7C0-229A-4F12-A828-0DE2DA42CF7A}.Debug|x64.ActiveCfg = Debug|x64
+		{5F95A7C0-229A-4F12-A828-0DE2DA42CF7A}.Debug|x64.Build.0 = Debug|x64
+		{5F95A7C0-229A-4F12-A828-0DE2DA42CF7A}.Debug|x86.ActiveCfg = Debug|Win32
+		{5F95A7C0-229A-4F12-A828-0DE2DA42CF7A}.Debug|x86.Build.0 = Debug|Win32
+		{5F95A7C0-229A-4F12-A828-0DE2DA42CF7A}.Release|x64.ActiveCfg = Release|x64
+		{5F95A7C0-229A-4F12-A828-0DE2DA42CF7A}.Release|x64.Build.0 = Release|x64
+		{5F95A7C0-229A-4F12-A828-0DE2DA42CF7A}.Release|x86.ActiveCfg = Release|Win32
+		{5F95A7C0-229A-4F12-A828-0DE2DA42CF7A}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -532,6 +558,7 @@ Global
 		{6EB4787A-7385-43E6-AAD2-35E6AA9FC8C4} = {83EE5C27-CE0F-4481-BC1D-F0E8A3C2F4C2}
 		{516192EB-788A-4FE7-B2B7-2EF9AC036B12} = {96F46E99-D1B1-4B7B-BF42-30151BCDDEFF}
 		{481368F7-6BF4-4366-B58C-5AFE345DCA28} = {6CD879E0-67E9-4B40-B7DA-346056727AC1}
+		{52D97F82-3BAB-4587-BD9B-1D020E0EE1FB} = {6CD879E0-67E9-4B40-B7DA-346056727AC1}
 		{D4BF0344-E167-4645-8E39-7BB564F51423} = {83EE5C27-CE0F-4481-BC1D-F0E8A3C2F4C2}
 		{EB9FB522-0453-42BC-AB65-F1BAB68A61A1} = {83EE5C27-CE0F-4481-BC1D-F0E8A3C2F4C2}
 		{4F150A30-CECB-49D1-8283-6A3F57438CF5} = {96F46E99-D1B1-4B7B-BF42-30151BCDDEFF}
@@ -549,6 +576,7 @@ Global
 		{05ADB632-B712-4838-BCA5-8D6A8E283DD3} = {53C01949-88F2-46AF-BBA1-C1D24E8EA6D8}
 		{F9175E52-4806-4D60-9F0B-E8E70D4CDE79} = {0D127E2E-A351-4DEB-A710-BD05634BB5E6}
 		{8162347A-7F6C-4578-98E1-867AAFF615FD} = {0D127E2E-A351-4DEB-A710-BD05634BB5E6}
+		{5F95A7C0-229A-4F12-A828-0DE2DA42CF7A} = {9EDA9AB7-7C31-42FC-9B1E-FA16472A7C1A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3FD362C1-9DCF-4C30-BA1C-7C60EAFBEABC}

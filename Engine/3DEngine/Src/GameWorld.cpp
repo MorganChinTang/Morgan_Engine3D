@@ -7,6 +7,7 @@
 #include "RenderService.h"
 #include "PhysicsService.h"
 #include "UIRenderService.h"
+#include "NetworkService.h"
 #include "SaveUtil.h"
 
 using namespace Engine3D;
@@ -97,7 +98,7 @@ void GameWorld::Render()
     }
 }
 
-void GameWorld::DebugUI() {
+void GameWorld::DebugUI(bool showSaveButton) {
 
     for (Slot& slot : mGameObjectSlots)
     {
@@ -111,7 +112,7 @@ void GameWorld::DebugUI() {
         service->DebugUI();
     }
 
-    if (ImGui::Button("Save"))
+    if (showSaveButton && ImGui::Button("Save"))
     {
         SaveLevel(mLevelFileName);
     }
@@ -172,6 +173,9 @@ void GameWorld::LoadLevel(const std::filesystem::path& levelFile)
 
     ASSERT(!doc.HasParseError(), "GameWorld: failed to parse %s!", levelFile.u8string().c_str());
     ASSERT(doc.IsObject(), "GameWorld: root json must be object in %s!", levelFile.u8string().c_str());
+    ASSERT(doc.HasMember("Services") && doc["Services"].IsObject(), "GameWorld: missing Services object in %s!", levelFile.u8string().c_str());
+    ASSERT(doc.HasMember("Capacity") && doc["Capacity"].IsInt(), "GameWorld: missing Capacity int in %s!", levelFile.u8string().c_str());
+    ASSERT(doc.HasMember("GameObjects") && doc["GameObjects"].IsObject(), "GameWorld: missing GameObjects object in %s!", levelFile.u8string().c_str());
 
     auto services = doc["Services"].GetObj();
     for (auto& service : services)
@@ -194,6 +198,10 @@ void GameWorld::LoadLevel(const std::filesystem::path& levelFile)
         {
             newService = AddService<UIRenderService>();
         }
+        else if (serviceName == "NetworkService")
+        {
+            newService = AddService<NetworkService>();
+        }
         else
         {
             newService = TryAddService(serviceName, *this);
@@ -209,6 +217,11 @@ void GameWorld::LoadLevel(const std::filesystem::path& levelFile)
     auto gameObjects = doc["GameObjects"].GetObj();
     for (auto& gameObject : gameObjects)
     {
+        ASSERT(gameObject.value.IsObject(), "GameWorld: gameobject [%s] is not an object in %s!", gameObject.name.GetString(), levelFile.u8string().c_str());
+        ASSERT(gameObject.value.HasMember("Template") && gameObject.value["Template"].IsString(),
+            "GameWorld: gameobject [%s] missing Template string in %s!",
+            gameObject.name.GetString(), levelFile.u8string().c_str());
+
         std::string name = gameObject.name.GetString();
         std::string templateFile = gameObject.value["Template"].GetString();
         GameObject* go = CreateGameObject(name, templateFile);

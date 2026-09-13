@@ -7,6 +7,7 @@
 #include <Input/Inc/Input.h>
 #include <Physics/Inc/Physics.h>
 #include <Audio/Inc/Audio.h>
+#include <Network/Inc/Network.h>
 
 //rapidjson files
 #include "rapidjson/document.h"

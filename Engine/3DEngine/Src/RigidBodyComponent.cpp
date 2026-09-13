@@ -109,3 +109,8 @@ const Math::Vector3 RigidBodyComponent::GetAngularVelocity() const
 {
     return mRigidBody.GetAngularVelocity();
 }
+
+const Physics::RigidBody* RigidBodyComponent::GetRigidBody() const
+{
+    return &mRigidBody;
+}

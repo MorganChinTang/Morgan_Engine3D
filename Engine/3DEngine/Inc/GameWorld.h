@@ -14,7 +14,7 @@ namespace Engine3D
         void Terminate();
         void Update(float deltaTime);
         void Render();
-        void DebugUI();
+        void DebugUI(bool showSaveButton = true);
 
         GameObject* CreateGameObject(std::string name);
         GameObject* CreateGameObject(std::string name, const std::filesystem::path& templatePath = "");

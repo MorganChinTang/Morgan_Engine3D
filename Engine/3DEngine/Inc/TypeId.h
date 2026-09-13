@@ -14,6 +14,7 @@ namespace Engine3D
         Animator,
         RigidBody,
         PlayerController,
+        NetworkController,
         SoundEffect,               // adds a sound effect to an object
         SoundBank,                 // adds a group of sounds to an object
         UIText,                    // adds a UI text Component
@@ -30,6 +31,7 @@ namespace Engine3D
         Render,
         Physics,
         UIRender,
+        Network,
         Count
     };
 }

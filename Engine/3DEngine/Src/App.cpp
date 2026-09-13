@@ -8,6 +8,7 @@ using namespace Engine3D::Graphics;
 using namespace Engine3D::Input;
 using namespace Engine3D::Physics;
 using namespace Engine3D::Audio;
+using namespace Engine3D::Network;
 
 void App::Run(const AppConfig& config )
 {
@@ -24,6 +25,7 @@ void App::Run(const AppConfig& config )
     auto handle = myWindow.GetWindowHandle();
     GraphicsSystem::StaticInitialize(handle, false);
     InputSystem::StaticInitialize(handle);
+    NetworkManager::StaticInitialize(handle);
     DebugUI::StaticInitialize(handle, false, true);
     SimpleDraw::StaticInitialize(config.maxVertexCount);
     TextureManager::StaticInitialize(L"../../Assets/Textures");
@@ -95,6 +97,7 @@ void App::Run(const AppConfig& config )
     TextureManager::StaticTerminate();                      
     SimpleDraw::StaticTerminate();
     DebugUI::StaticTerminate();
+    NetworkManager::StaticTerminate();
     InputSystem::StaticTerminate();
     GraphicsSystem::StaticTerminate();
     myWindow.Terminate();
