@@ -1,7 +1,7 @@
 {
   "Components": {
     "TransformComponent": {
-      "Position": [ 0.0, 1.0, 0.0 ],
+      "Position": [ -2.0, 0.7, 10.0 ],
       "Rotation": [ 0.0, 0.0, 0.0, 1.0 ],
       "Scale": [ 1.0, 1.0, 1.0 ]
     },
@@ -9,33 +9,33 @@
       "CastShadow": false,
       "Shape": {
         "Type": "Sphere",
-        "Slices": 60,
-        "Rings": 60,
-        "Radius": 1.0
+        "Slices": 32,
+        "Rings": 32,
+        "Radius": 0.65
       },
       "Material": {
         "Emissive": [ 0.0, 0.0, 0.0, 1.0 ],
-        "Ambient": [ 0.3, 0.3, 0.3, 1.0 ],
+        "Ambient": [ 0.8, 0.8, 0.8, 1.0 ],
         "Diffuse": [ 0.8, 0.8, 0.8, 1.0 ],
-        "Specular": [ 1.0, 1.0, 1.0, 1.0 ],
+        "Specular": [ 0.2, 0.2, 0.2, 1.0 ],
         "Shininess": 10.0
       },
       "Textures": {
-        "DiffuseMap": "../../Assets/Textures/Images/redFace.png"
+        "DiffuseMap": "../../Assets/Textures/maze/blue_plaid.jpg"
       }
     },
     "RigidBodyComponent": {
       "Mass": 2.0,
       "ColliderData": {
         "Shape": "Sphere",
-        "Radius": 1.0
+        "Radius": 0.65
       }
     },
     "NetworkControllerComponent": {
-      "ShiftSpeed": 10.0,
-      "MoveSpeed": 1.0,
+      "ShiftSpeed": 5.0,
+      "MoveSpeed": 3.0,
       "TurnSpeed": 0.1,
-      "JumpSpeed": 10.0
+      "JumpSpeed": 0.0
     }
   }
 }

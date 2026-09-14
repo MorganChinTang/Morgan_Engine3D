@@ -4,10 +4,9 @@
     "CameraService": {},
     "RenderService": {
       "Direction": [ 1.0, -1.0, 1.0 ],
-      "Ambient": [ 0.3, 0.3, 0.3, 1.0 ],
+      "Ambient": [ 0.6, 0.6, 0.6, 1.0 ],
       "Diffuse": [ 0.7, 0.7, 0.7, 1.0 ],
-      "Specular": [ 0.9, 0.9, 0.9, 1.0 ],
-      "Shininess": 10.0
+      "Specular": [ 0.2, 0.2, 0.2, 1.0 ]
     },
     "PhysicsService": {
       "Gravity": [ 0.0, -9.81, 0.0 ]
@@ -15,27 +14,30 @@
     "NetworkService": {
       "PlayerTemplate": "../../Assets/Templates/Objects/player_obj_mp_remote.json"
     },
-    "UIRenderService": {
-
-    }
+    "UIRenderService": {}
   },
   "GameObjects": {
     "Ground": {
-      "Template": "../../Assets/Templates/Objects/ground.json",
+      "Template": "../../Assets/Templates/Objects/maze_wall.json",
       "Components": {
+        "TransformComponent": {
+          "Position": [ 0.0, -0.5, 0.0 ],
+          "Scale": [ 28.0, 1.0, 28.0 ]
+        },
         "MeshComponent": {
-          "Shape": {
-            "Type": "Plane",
-            "Rows": 20,
-            "Columns": 20,
-            "Spacing": 1.0
+          "Material": {
+            "Ambient": [ 0.85, 0.85, 0.82, 1.0 ],
+            "Diffuse": [ 0.85, 0.85, 0.82, 1.0 ],
+            "Emissive": [ 0.1, 0.1, 0.1, 1.0 ]
+          },
+          "Textures": {
+            "DiffuseMap": "../../Assets/Textures/maze/pink.png"
           }
         },
         "RigidBodyComponent": {
           "ColliderData": {
-            "Shape": "Hull",
-            "HalfExtents": [ 10.0, 1.0, 10.0 ],
-            "Origin": [ 0.0, -1.0, 0.0 ]
+            "Shape": "Box",
+            "HalfExtents": [ 14.0, 0.5, 14.0 ]
           }
         }
       }
@@ -44,7 +46,13 @@
       "Template": "../../Assets/Templates/Objects/player_obj_mp.json"
     },
     "Camera": {
-      "Template":  "../../Assets/Templates/Objects/static_camera.json"
+      "Template": "../../Assets/Templates/Objects/static_camera.json",
+      "Components": {
+        "CameraComponent": {
+          "Position": [ 0.0, 20.0, -18.0 ],
+          "LookAt": [ 0.0, -5.0, 0.0 ]
+        }
+      }
     }
   }
 }

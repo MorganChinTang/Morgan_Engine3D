@@ -126,6 +126,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Objects", "Objects", "{B2AD
 		Assets\Templates\Objects\furniture_salad.json = Assets\Templates\Objects\furniture_salad.json
 		Assets\Templates\Objects\grid_ground.json = Assets\Templates\Objects\grid_ground.json
 		Assets\Templates\Objects\ground.json = Assets\Templates\Objects\ground.json
+		Assets\Templates\Objects\maze_wall.json = Assets\Templates\Objects\maze_wall.json
 		Assets\Templates\Objects\mesh_obj.json = Assets\Templates\Objects\mesh_obj.json
 		Assets\Templates\Objects\model_obj.json = Assets\Templates\Objects\model_obj.json
 		Assets\Templates\Objects\player_obj.json = Assets\Templates\Objects\player_obj.json
